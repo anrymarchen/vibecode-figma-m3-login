@@ -13,11 +13,36 @@
   transition: border-radius 120ms ease;
 }
 
+.design-system-button--outline,
+.design-system-button--text {
+  color: #49454f;
+  background: transparent;
+}
+
+.design-system-button--text {
+  color: #6750a4;
+}
+
+.design-system-button--outline {
+  border: 1px solid #cac4d0;
+}
+
+.design-system-button--outline.design-system-button--large,
+.design-system-button--outline.design-system-button--xlarge {
+  border-width: 2px;
+}
+
+.design-system-button--outline:disabled,
+.design-system-button--text:disabled {
+  border-color: transparent;
+}
+
 .design-system-button::before {
   position: absolute;
   z-index: 0;
   content: '';
   pointer-events: none;
+  border-radius: inherit;
 }
 
 .design-system-button:hover::before {
@@ -43,6 +68,36 @@
       transparent 43%
     ),
     rgb(255 255 255 / 8%);
+}
+
+.design-system-button--outline:hover::before,
+.design-system-button--outline:focus-visible::before {
+  background: rgb(73 69 79 / 8%);
+}
+
+.design-system-button--outline:active::before {
+  background:
+    radial-gradient(
+      ellipse 72% 100% at 100% 100%,
+      rgb(73 69 79 / 16%) 0 42%,
+      transparent 43%
+    ),
+    rgb(73 69 79 / 8%);
+}
+
+.design-system-button--text:hover::before,
+.design-system-button--text:focus-visible::before {
+  background: rgb(103 80 164 / 8%);
+}
+
+.design-system-button--text:active::before {
+  background:
+    radial-gradient(
+      ellipse 72% 100% at 100% 100%,
+      rgb(103 80 164 / 16%) 0 42%,
+      transparent 43%
+    ),
+    rgb(103 80 164 / 8%);
 }
 
 .design-system-button--focus-indicator:focus-visible {
