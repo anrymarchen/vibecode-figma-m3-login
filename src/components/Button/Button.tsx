@@ -1,9 +1,11 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 import './Button.css';
+import starsFilledIcon from '../../assets/icons/stars_filled.svg';
 
 export type ButtonSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 export type ButtonShape = 'round' | 'square';
+export type ButtonVariant = 'filled' | 'outline' | 'text';
 
 export interface ButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
@@ -13,20 +15,15 @@ export interface ButtonProps
   showFocusIndicator?: boolean;
   size?: ButtonSize;
   shape?: ButtonShape;
+  variant?: ButtonVariant;
 }
 
 const defaultIcon = (
-  <svg
-    aria-hidden="true"
+  <img
+    src={starsFilledIcon}
+    alt=""
     className="design-system-button__default-icon"
-    viewBox="0 0 24 24"
-  >
-    <circle cx="12" cy="12" r="9" fill="currentColor" />
-    <path
-      d="m12 6.75 1.55 3.17 3.5.51-2.53 2.46.6 3.49L12 14.73l-3.12 1.65.6-3.49-2.53-2.46 3.5-.51L12 6.75Z"
-      fill="#6750A4"
-    />
-  </svg>
+  />
 );
 
 export function Button({
@@ -36,6 +33,7 @@ export function Button({
   showFocusIndicator = false,
   size = 'medium',
   shape = 'round',
+  variant = 'filled',
   className,
   disabled,
   type = 'button',
@@ -45,6 +43,7 @@ export function Button({
     'design-system-button',
     `design-system-button--${size}`,
     `design-system-button--${shape}`,
+    `design-system-button--${variant}`,
     showFocusIndicator ? 'design-system-button--focus-indicator' : '',
     className ?? '',
   ]
