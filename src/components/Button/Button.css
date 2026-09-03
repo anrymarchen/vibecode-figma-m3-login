@@ -1,0 +1,219 @@
+.design-system-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 0;
+  color: #ffffff;
+  background: #6750a4;
+  font-family: Roboto, 'Segoe UI', sans-serif;
+  cursor: pointer;
+  isolation: isolate;
+  transition: border-radius 120ms ease;
+}
+
+.design-system-button::before {
+  position: absolute;
+  z-index: 0;
+  content: '';
+  pointer-events: none;
+}
+
+.design-system-button:hover::before {
+  inset: 0;
+  background: rgb(255 255 255 / 8%);
+}
+
+.design-system-button:focus-visible::before {
+  inset: 0;
+  background: rgb(255 255 255 / 10%);
+}
+
+.design-system-button:active {
+  border-radius: 16px;
+}
+
+.design-system-button:active::before {
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 72% 100% at 100% 100%,
+      rgb(255 255 255 / 16%) 0 42%,
+      transparent 43%
+    ),
+    rgb(255 255 255 / 8%);
+}
+
+.design-system-button--focus-indicator:focus-visible {
+  outline: 3px solid #625b71;
+  outline-offset: 2px;
+}
+
+.design-system-button:disabled {
+  color: #1d1b20;
+  background: rgb(29 27 32 / 10%);
+  cursor: not-allowed;
+  opacity: 0.38;
+}
+
+.design-system-button__state-layer {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.design-system-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.design-system-button__icon > svg,
+.design-system-button__icon > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.design-system-button__label {
+  white-space: nowrap;
+}
+
+.design-system-button--xsmall {
+  min-height: 48px;
+  padding: 6px 12px;
+  border-radius: 100px;
+}
+
+.design-system-button--xsmall .design-system-button__state-layer {
+  gap: 4px;
+}
+
+.design-system-button--xsmall .design-system-button__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.design-system-button--xsmall .design-system-button__label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+
+.design-system-button--small {
+  min-height: 48px;
+  padding: 10px 16px;
+  border-radius: 100px;
+}
+
+.design-system-button--small .design-system-button__state-layer {
+  gap: 8px;
+}
+
+.design-system-button--small .design-system-button__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.design-system-button--small .design-system-button__label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+
+.design-system-button--medium {
+  min-height: 56px;
+  padding: 16px 24px;
+  border-radius: 100px;
+}
+
+.design-system-button--medium .design-system-button__state-layer {
+  gap: 8px;
+}
+
+.design-system-button--medium .design-system-button__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.design-system-button--medium .design-system-button__label {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.design-system-button--large {
+  min-height: 96px;
+  padding: 32px 48px;
+  border-radius: 100px;
+}
+
+.design-system-button--large .design-system-button__state-layer {
+  gap: 12px;
+}
+
+.design-system-button--large .design-system-button__icon {
+  width: 32px;
+  height: 32px;
+}
+
+.design-system-button--large .design-system-button__label {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.design-system-button--xlarge {
+  min-height: 136px;
+  padding: 48px 64px;
+  border-radius: 100px;
+}
+
+.design-system-button--xlarge .design-system-button__state-layer {
+  gap: 16px;
+}
+
+.design-system-button--xlarge .design-system-button__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.design-system-button--xlarge .design-system-button__label {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+.design-system-button--square.design-system-button--xsmall,
+.design-system-button--square.design-system-button--small {
+  border-radius: 12px;
+}
+
+.design-system-button--square.design-system-button--medium {
+  border-radius: 16px;
+}
+
+.design-system-button--square.design-system-button--large,
+.design-system-button--square.design-system-button--xlarge {
+  border-radius: 28px;
+}
+
+.design-system-button--square:active {
+  border-radius: 8px;
+}
+
+.design-system-button--square.design-system-button--medium:active {
+  border-radius: 12px;
+}
+
+.design-system-button--square.design-system-button--large:active,
+.design-system-button--square.design-system-button--xlarge:active {
+  border-radius: 16px;
+}
