@@ -1,0 +1,82 @@
+:root {
+  /* Material 3 reference colors used by the current application surface. */
+  --md-ref-palette-primary-40: #6750a4;
+  --md-ref-palette-secondary-40: #625b71;
+  --md-ref-palette-neutral-10: #1d1b20;
+
+  /* Material 3 light system roles. */
+  --md-sys-color-primary: var(--md-ref-palette-primary-40);
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-secondary: var(--md-ref-palette-secondary-40);
+  --md-sys-color-on-surface: var(--md-ref-palette-neutral-10);
+
+  /* State layers are the role color plus the interaction-specific opacity. */
+  --md-sys-state-on-primary-hover-opacity: 0.08;
+  --md-sys-state-on-primary-focus-opacity: 0.10;
+  --md-sys-state-on-primary-press-opacity: 0.08;
+  --md-sys-state-on-surface-disabled-opacity: 0.10;
+  --md-sys-state-disabled-content-opacity: 0.38;
+
+  /* Material 3 typography roles used by the observed Button sizes. */
+  --md-sys-typescale-label-large-font-family: Roboto, 'Segoe UI', sans-serif;
+  --md-sys-typescale-label-large-font-weight: 500;
+  --md-sys-typescale-label-large-font-size: 14px;
+  --md-sys-typescale-label-large-line-height: 20px;
+  --md-sys-typescale-label-large-letter-spacing: 0.1px;
+
+  --md-sys-typescale-title-medium-font-family: Roboto, 'Segoe UI', sans-serif;
+  --md-sys-typescale-title-medium-font-weight: 500;
+  --md-sys-typescale-title-medium-font-size: 16px;
+  --md-sys-typescale-title-medium-line-height: 24px;
+  --md-sys-typescale-title-medium-letter-spacing: 0.15px;
+
+  --md-sys-typescale-headline-small-font-family: Roboto, 'Segoe UI', sans-serif;
+  --md-sys-typescale-headline-small-font-weight: 400;
+  --md-sys-typescale-headline-small-font-size: 24px;
+  --md-sys-typescale-headline-small-line-height: 32px;
+  --md-sys-typescale-headline-small-letter-spacing: 0;
+
+  --md-sys-typescale-headline-large-font-family: Roboto, 'Segoe UI', sans-serif;
+  --md-sys-typescale-headline-large-font-weight: 400;
+  --md-sys-typescale-headline-large-font-size: 32px;
+  --md-sys-typescale-headline-large-line-height: 40px;
+  --md-sys-typescale-headline-large-letter-spacing: 0;
+
+  /* Shared shape roles and button geometry required by the current source. */
+  --md-sys-shape-corner-full: 100px;
+  --md-sys-shape-corner-extra-small: 4px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+
+  --md-comp-button-xsmall-height: 48px;
+  --md-comp-button-xsmall-padding-inline: 12px;
+  --md-comp-button-xsmall-padding-block: 6px;
+  --md-comp-button-xsmall-icon-size: 20px;
+  --md-comp-button-xsmall-icon-label-gap: 4px;
+
+  --md-comp-button-small-height: 48px;
+  --md-comp-button-small-padding-inline: 16px;
+  --md-comp-button-small-padding-block: 10px;
+  --md-comp-button-small-icon-size: 20px;
+  --md-comp-button-small-icon-label-gap: 8px;
+
+  --md-comp-button-medium-height: 56px;
+  --md-comp-button-medium-padding-inline: 24px;
+  --md-comp-button-medium-padding-block: 16px;
+  --md-comp-button-medium-icon-size: 24px;
+  --md-comp-button-medium-icon-label-gap: 8px;
+
+  --md-comp-button-large-height: 96px;
+  --md-comp-button-large-padding-inline: 48px;
+  --md-comp-button-large-padding-block: 32px;
+  --md-comp-button-large-icon-size: 32px;
+  --md-comp-button-large-icon-label-gap: 12px;
+
+  --md-comp-button-xlarge-height: 136px;
+  --md-comp-button-xlarge-padding-inline: 64px;
+  --md-comp-button-xlarge-padding-block: 48px;
+  --md-comp-button-xlarge-icon-size: 40px;
+  --md-comp-button-xlarge-icon-label-gap: 16px;
+}
