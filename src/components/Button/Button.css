@@ -5,9 +5,8 @@
   justify-content: center;
   box-sizing: border-box;
   border: 0;
-  color: #ffffff;
-  background: #6750a4;
-  font-family: Roboto, 'Segoe UI', sans-serif;
+  color: var(--md-sys-color-on-primary);
+  background: var(--md-sys-color-primary);
   cursor: pointer;
   isolation: isolate;
   transition: border-radius 120ms ease;
@@ -22,16 +21,16 @@
 
 .design-system-button:hover::before {
   inset: 0;
-  background: rgb(255 255 255 / 8%);
+  background: rgb(255 255 255 / var(--md-sys-state-on-primary-hover-opacity));
 }
 
 .design-system-button:focus-visible::before {
   inset: 0;
-  background: rgb(255 255 255 / 10%);
+  background: rgb(255 255 255 / var(--md-sys-state-on-primary-focus-opacity));
 }
 
 .design-system-button:active {
-  border-radius: 16px;
+  border-radius: var(--md-sys-shape-corner-large);
 }
 
 .design-system-button:active::before {
@@ -42,19 +41,19 @@
       rgb(255 255 255 / 16%) 0 42%,
       transparent 43%
     ),
-    rgb(255 255 255 / 8%);
+    rgb(255 255 255 / var(--md-sys-state-on-primary-press-opacity));
 }
 
 .design-system-button--focus-indicator:focus-visible {
-  outline: 3px solid #625b71;
+  outline: 3px solid var(--md-sys-color-secondary);
   outline-offset: 2px;
 }
 
 .design-system-button:disabled {
-  color: #1d1b20;
-  background: rgb(29 27 32 / 10%);
+  color: var(--md-sys-color-on-surface);
+  background: rgb(29 27 32 / var(--md-sys-state-on-surface-disabled-opacity));
   cursor: not-allowed;
-  opacity: 0.38;
+  opacity: var(--md-sys-state-disabled-content-opacity);
 }
 
 .design-system-button__state-layer {
@@ -84,136 +83,143 @@
 }
 
 .design-system-button--xsmall {
-  min-height: 48px;
-  padding: 6px 12px;
-  border-radius: 100px;
+  min-height: var(--md-comp-button-xsmall-height);
+  padding: var(--md-comp-button-xsmall-padding-block) var(--md-comp-button-xsmall-padding-inline);
+  border-radius: var(--md-sys-shape-corner-full);
 }
 
 .design-system-button--xsmall .design-system-button__state-layer {
-  gap: 4px;
+  gap: var(--md-comp-button-xsmall-icon-label-gap);
 }
 
 .design-system-button--xsmall .design-system-button__icon {
-  width: 20px;
-  height: 20px;
+  width: var(--md-comp-button-xsmall-icon-size);
+  height: var(--md-comp-button-xsmall-icon-size);
 }
 
 .design-system-button--xsmall .design-system-button__label {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0.1px;
+  font-family: var(--md-sys-typescale-label-large-font-family);
+  font-size: var(--md-sys-typescale-label-large-font-size);
+  font-weight: var(--md-sys-typescale-label-large-font-weight);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
 }
 
 .design-system-button--small {
-  min-height: 48px;
-  padding: 10px 16px;
-  border-radius: 100px;
+  min-height: var(--md-comp-button-small-height);
+  padding: var(--md-comp-button-small-padding-block) var(--md-comp-button-small-padding-inline);
+  border-radius: var(--md-sys-shape-corner-full);
 }
 
 .design-system-button--small .design-system-button__state-layer {
-  gap: 8px;
+  gap: var(--md-comp-button-small-icon-label-gap);
 }
 
 .design-system-button--small .design-system-button__icon {
-  width: 20px;
-  height: 20px;
+  width: var(--md-comp-button-small-icon-size);
+  height: var(--md-comp-button-small-icon-size);
 }
 
 .design-system-button--small .design-system-button__label {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0.1px;
+  font-family: var(--md-sys-typescale-label-large-font-family);
+  font-size: var(--md-sys-typescale-label-large-font-size);
+  font-weight: var(--md-sys-typescale-label-large-font-weight);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
 }
 
 .design-system-button--medium {
-  min-height: 56px;
-  padding: 16px 24px;
-  border-radius: 100px;
+  min-height: var(--md-comp-button-medium-height);
+  padding: var(--md-comp-button-medium-padding-block) var(--md-comp-button-medium-padding-inline);
+  border-radius: var(--md-sys-shape-corner-full);
 }
 
 .design-system-button--medium .design-system-button__state-layer {
-  gap: 8px;
+  gap: var(--md-comp-button-medium-icon-label-gap);
 }
 
 .design-system-button--medium .design-system-button__icon {
-  width: 24px;
-  height: 24px;
+  width: var(--md-comp-button-medium-icon-size);
+  height: var(--md-comp-button-medium-icon-size);
 }
 
 .design-system-button--medium .design-system-button__label {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: 0.15px;
+  font-family: var(--md-sys-typescale-title-medium-font-family);
+  font-size: var(--md-sys-typescale-title-medium-font-size);
+  font-weight: var(--md-sys-typescale-title-medium-font-weight);
+  line-height: var(--md-sys-typescale-title-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-title-medium-letter-spacing);
 }
 
 .design-system-button--large {
-  min-height: 96px;
-  padding: 32px 48px;
-  border-radius: 100px;
+  min-height: var(--md-comp-button-large-height);
+  padding: var(--md-comp-button-large-padding-block) var(--md-comp-button-large-padding-inline);
+  border-radius: var(--md-sys-shape-corner-full);
 }
 
 .design-system-button--large .design-system-button__state-layer {
-  gap: 12px;
+  gap: var(--md-comp-button-large-icon-label-gap);
 }
 
 .design-system-button--large .design-system-button__icon {
-  width: 32px;
-  height: 32px;
+  width: var(--md-comp-button-large-icon-size);
+  height: var(--md-comp-button-large-icon-size);
 }
 
 .design-system-button--large .design-system-button__label {
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 32px;
+  font-family: var(--md-sys-typescale-headline-small-font-family);
+  font-size: var(--md-sys-typescale-headline-small-font-size);
+  font-weight: var(--md-sys-typescale-headline-small-font-weight);
+  line-height: var(--md-sys-typescale-headline-small-line-height);
+  letter-spacing: var(--md-sys-typescale-headline-small-letter-spacing);
 }
 
 .design-system-button--xlarge {
-  min-height: 136px;
-  padding: 48px 64px;
-  border-radius: 100px;
+  min-height: var(--md-comp-button-xlarge-height);
+  padding: var(--md-comp-button-xlarge-padding-block) var(--md-comp-button-xlarge-padding-inline);
+  border-radius: var(--md-sys-shape-corner-full);
 }
 
 .design-system-button--xlarge .design-system-button__state-layer {
-  gap: 16px;
+  gap: var(--md-comp-button-xlarge-icon-label-gap);
 }
 
 .design-system-button--xlarge .design-system-button__icon {
-  width: 40px;
-  height: 40px;
+  width: var(--md-comp-button-xlarge-icon-size);
+  height: var(--md-comp-button-xlarge-icon-size);
 }
 
 .design-system-button--xlarge .design-system-button__label {
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 40px;
+  font-family: var(--md-sys-typescale-headline-large-font-family);
+  font-size: var(--md-sys-typescale-headline-large-font-size);
+  font-weight: var(--md-sys-typescale-headline-large-font-weight);
+  line-height: var(--md-sys-typescale-headline-large-line-height);
+  letter-spacing: var(--md-sys-typescale-headline-large-letter-spacing);
 }
 
 .design-system-button--square.design-system-button--xsmall,
 .design-system-button--square.design-system-button--small {
-  border-radius: 12px;
+  border-radius: var(--md-sys-shape-corner-medium);
 }
 
 .design-system-button--square.design-system-button--medium {
-  border-radius: 16px;
+  border-radius: var(--md-sys-shape-corner-large);
 }
 
 .design-system-button--square.design-system-button--large,
 .design-system-button--square.design-system-button--xlarge {
-  border-radius: 28px;
+  border-radius: var(--md-sys-shape-corner-extra-large);
 }
 
 .design-system-button--square:active {
-  border-radius: 8px;
+  border-radius: var(--md-sys-shape-corner-small);
 }
 
 .design-system-button--square.design-system-button--medium:active {
-  border-radius: 12px;
+  border-radius: var(--md-sys-shape-corner-medium);
 }
 
 .design-system-button--square.design-system-button--large:active,
 .design-system-button--square.design-system-button--xlarge:active {
-  border-radius: 16px;
+  border-radius: var(--md-sys-shape-corner-large);
 }
