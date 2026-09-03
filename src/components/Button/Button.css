@@ -5,8 +5,9 @@
   justify-content: center;
   box-sizing: border-box;
   border: 0;
-  color: var(--md-sys-color-on-primary);
-  background: var(--md-sys-color-primary);
+  color: #ffffff;
+  background: #6750a4;
+  font-family: Roboto, 'Segoe UI', sans-serif;
   cursor: pointer;
   isolation: isolate;
   transition: border-radius 120ms ease;
@@ -46,16 +47,16 @@
 
 .design-system-button:hover::before {
   inset: 0;
-  background: rgb(255 255 255 / var(--md-sys-state-on-primary-hover-opacity));
+  background: rgb(255 255 255 / 8%);
 }
 
 .design-system-button:focus-visible::before {
   inset: 0;
-  background: rgb(255 255 255 / var(--md-sys-state-on-primary-focus-opacity));
+  background: rgb(255 255 255 / 10%);
 }
 
 .design-system-button:active {
-  border-radius: var(--md-sys-shape-corner-large);
+  border-radius: 16px;
 }
 
 .design-system-button:active::before {
@@ -66,7 +67,7 @@
       rgb(255 255 255 / 16%) 0 42%,
       transparent 43%
     ),
-    rgb(255 255 255 / var(--md-sys-state-on-primary-press-opacity));
+    rgb(255 255 255 / 8%);
 }
 
 .design-system-button--outline:hover::before,
@@ -100,15 +101,15 @@
 }
 
 .design-system-button--focus-indicator:focus-visible {
-  outline: 3px solid var(--md-sys-color-secondary);
+  outline: 3px solid #625b71;
   outline-offset: 2px;
 }
 
 .design-system-button:disabled {
-  color: var(--md-sys-color-on-surface);
-  background: rgb(29 27 32 / var(--md-sys-state-on-surface-disabled-opacity));
+  color: #1d1b20;
+  background: rgb(29 27 32 / 10%);
   cursor: not-allowed;
-  opacity: var(--md-sys-state-disabled-content-opacity);
+  opacity: 0.38;
 }
 
 .design-system-button__state-layer {
@@ -138,143 +139,136 @@
 }
 
 .design-system-button--xsmall {
-  min-height: var(--md-comp-button-xsmall-height);
-  padding: var(--md-comp-button-xsmall-padding-block) var(--md-comp-button-xsmall-padding-inline);
-  border-radius: var(--md-sys-shape-corner-full);
+  min-height: 48px;
+  padding: 6px 12px;
+  border-radius: 100px;
 }
 
 .design-system-button--xsmall .design-system-button__state-layer {
-  gap: var(--md-comp-button-xsmall-icon-label-gap);
+  gap: 4px;
 }
 
 .design-system-button--xsmall .design-system-button__icon {
-  width: var(--md-comp-button-xsmall-icon-size);
-  height: var(--md-comp-button-xsmall-icon-size);
+  width: 20px;
+  height: 20px;
 }
 
 .design-system-button--xsmall .design-system-button__label {
-  font-family: var(--md-sys-typescale-label-large-font-family);
-  font-size: var(--md-sys-typescale-label-large-font-size);
-  font-weight: var(--md-sys-typescale-label-large-font-weight);
-  line-height: var(--md-sys-typescale-label-large-line-height);
-  letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.1px;
 }
 
 .design-system-button--small {
-  min-height: var(--md-comp-button-small-height);
-  padding: var(--md-comp-button-small-padding-block) var(--md-comp-button-small-padding-inline);
-  border-radius: var(--md-sys-shape-corner-full);
+  min-height: 48px;
+  padding: 10px 16px;
+  border-radius: 100px;
 }
 
 .design-system-button--small .design-system-button__state-layer {
-  gap: var(--md-comp-button-small-icon-label-gap);
+  gap: 8px;
 }
 
 .design-system-button--small .design-system-button__icon {
-  width: var(--md-comp-button-small-icon-size);
-  height: var(--md-comp-button-small-icon-size);
+  width: 20px;
+  height: 20px;
 }
 
 .design-system-button--small .design-system-button__label {
-  font-family: var(--md-sys-typescale-label-large-font-family);
-  font-size: var(--md-sys-typescale-label-large-font-size);
-  font-weight: var(--md-sys-typescale-label-large-font-weight);
-  line-height: var(--md-sys-typescale-label-large-line-height);
-  letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.1px;
 }
 
 .design-system-button--medium {
-  min-height: var(--md-comp-button-medium-height);
-  padding: var(--md-comp-button-medium-padding-block) var(--md-comp-button-medium-padding-inline);
-  border-radius: var(--md-sys-shape-corner-full);
+  min-height: 56px;
+  padding: 16px 24px;
+  border-radius: 100px;
 }
 
 .design-system-button--medium .design-system-button__state-layer {
-  gap: var(--md-comp-button-medium-icon-label-gap);
+  gap: 8px;
 }
 
 .design-system-button--medium .design-system-button__icon {
-  width: var(--md-comp-button-medium-icon-size);
-  height: var(--md-comp-button-medium-icon-size);
+  width: 24px;
+  height: 24px;
 }
 
 .design-system-button--medium .design-system-button__label {
-  font-family: var(--md-sys-typescale-title-medium-font-family);
-  font-size: var(--md-sys-typescale-title-medium-font-size);
-  font-weight: var(--md-sys-typescale-title-medium-font-weight);
-  line-height: var(--md-sys-typescale-title-medium-line-height);
-  letter-spacing: var(--md-sys-typescale-title-medium-letter-spacing);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.15px;
 }
 
 .design-system-button--large {
-  min-height: var(--md-comp-button-large-height);
-  padding: var(--md-comp-button-large-padding-block) var(--md-comp-button-large-padding-inline);
-  border-radius: var(--md-sys-shape-corner-full);
+  min-height: 96px;
+  padding: 32px 48px;
+  border-radius: 100px;
 }
 
 .design-system-button--large .design-system-button__state-layer {
-  gap: var(--md-comp-button-large-icon-label-gap);
+  gap: 12px;
 }
 
 .design-system-button--large .design-system-button__icon {
-  width: var(--md-comp-button-large-icon-size);
-  height: var(--md-comp-button-large-icon-size);
+  width: 32px;
+  height: 32px;
 }
 
 .design-system-button--large .design-system-button__label {
-  font-family: var(--md-sys-typescale-headline-small-font-family);
-  font-size: var(--md-sys-typescale-headline-small-font-size);
-  font-weight: var(--md-sys-typescale-headline-small-font-weight);
-  line-height: var(--md-sys-typescale-headline-small-line-height);
-  letter-spacing: var(--md-sys-typescale-headline-small-letter-spacing);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
 }
 
 .design-system-button--xlarge {
-  min-height: var(--md-comp-button-xlarge-height);
-  padding: var(--md-comp-button-xlarge-padding-block) var(--md-comp-button-xlarge-padding-inline);
-  border-radius: var(--md-sys-shape-corner-full);
+  min-height: 136px;
+  padding: 48px 64px;
+  border-radius: 100px;
 }
 
 .design-system-button--xlarge .design-system-button__state-layer {
-  gap: var(--md-comp-button-xlarge-icon-label-gap);
+  gap: 16px;
 }
 
 .design-system-button--xlarge .design-system-button__icon {
-  width: var(--md-comp-button-xlarge-icon-size);
-  height: var(--md-comp-button-xlarge-icon-size);
+  width: 40px;
+  height: 40px;
 }
 
 .design-system-button--xlarge .design-system-button__label {
-  font-family: var(--md-sys-typescale-headline-large-font-family);
-  font-size: var(--md-sys-typescale-headline-large-font-size);
-  font-weight: var(--md-sys-typescale-headline-large-font-weight);
-  line-height: var(--md-sys-typescale-headline-large-line-height);
-  letter-spacing: var(--md-sys-typescale-headline-large-letter-spacing);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 40px;
 }
 
 .design-system-button--square.design-system-button--xsmall,
 .design-system-button--square.design-system-button--small {
-  border-radius: var(--md-sys-shape-corner-medium);
+  border-radius: 12px;
 }
 
 .design-system-button--square.design-system-button--medium {
-  border-radius: var(--md-sys-shape-corner-large);
+  border-radius: 16px;
 }
 
 .design-system-button--square.design-system-button--large,
 .design-system-button--square.design-system-button--xlarge {
-  border-radius: var(--md-sys-shape-corner-extra-large);
+  border-radius: 28px;
 }
 
 .design-system-button--square:active {
-  border-radius: var(--md-sys-shape-corner-small);
+  border-radius: 8px;
 }
 
 .design-system-button--square.design-system-button--medium:active {
-  border-radius: var(--md-sys-shape-corner-medium);
+  border-radius: 12px;
 }
 
 .design-system-button--square.design-system-button--large:active,
 .design-system-button--square.design-system-button--xlarge:active {
-  border-radius: var(--md-sys-shape-corner-large);
+  border-radius: 16px;
 }
