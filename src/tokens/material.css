@@ -7,8 +7,12 @@
   /* Material 3 light system roles. */
   --md-sys-color-primary: var(--md-ref-palette-primary-40);
   --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-error: #b3261e;
+  --md-sys-color-on-error: #ffffff;
   --md-sys-color-secondary: var(--md-ref-palette-secondary-40);
   --md-sys-color-on-surface: var(--md-ref-palette-neutral-10);
+  --md-sys-color-on-surface-variant: #49454f;
+  --md-sys-color-surface: #fef7ff;
 
   /* State layers are the role color plus the interaction-specific opacity. */
   --md-sys-state-on-primary-hover-opacity: 0.08;
@@ -16,6 +20,12 @@
   --md-sys-state-on-primary-press-opacity: 0.08;
   --md-sys-state-on-surface-disabled-opacity: 0.10;
   --md-sys-state-disabled-content-opacity: 0.38;
+  --md-sys-state-on-surface-hover-opacity: 0.08;
+  --md-sys-state-on-surface-focus-opacity: 0.10;
+  --md-sys-state-primary-hover-opacity: 0.08;
+  --md-sys-state-primary-focus-opacity: 0.10;
+  --md-sys-state-error-hover-opacity: 0.08;
+  --md-sys-state-error-focus-opacity: 0.10;
 
   /* Material 3 typography roles used by the observed Button sizes. */
   --md-sys-typescale-label-large-font-family: Roboto, 'Segoe UI', sans-serif;
