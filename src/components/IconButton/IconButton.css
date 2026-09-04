@@ -1,13 +1,46 @@
-.design-system-icon-button { display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; width: 48px; height: 48px; padding: 0; border: 0; border-radius: 50%; color: var(--md-sys-color-on-primary); background: var(--md-sys-color-primary); cursor: pointer; }
-.design-system-icon-button--square { border-radius: 12px; }
+.design-system-icon-button { position: relative; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; height: 48px; padding: 0; border: 0; color: var(--md-sys-color-on-primary, #fff); background: transparent; cursor: pointer; isolation: isolate; }
+.design-system-icon-button::before { position: absolute; z-index: 0; inset: 50% auto auto 50%; width: 40px; height: 40px; content: ''; transform: translate(-50%, -50%); border-radius: inherit; background: var(--md-sys-color-primary, #6750a4); }
+.design-system-icon-button::after { position: absolute; z-index: 2; inset: 2px; border: 3px solid var(--md-sys-color-secondary, #625b71); border-radius: 50%; content: ''; opacity: 0; pointer-events: none; }
+.design-system-icon-button img, .design-system-icon-button svg { position: relative; z-index: 1; display: block; width: 24px; height: 24px; filter: brightness(0) invert(1); }
+.design-system-icon-button--round::before { border-radius: 100px; }
+.design-system-icon-button--square::before { border-radius: 8px; }
 .design-system-icon-button--xsmall { width: 48px; height: 48px; }
 .design-system-icon-button--small { width: 48px; height: 48px; }
 .design-system-icon-button--medium { width: 56px; height: 56px; }
 .design-system-icon-button--large { width: 96px; height: 96px; }
 .design-system-icon-button--xlarge { width: 136px; height: 136px; }
+.design-system-icon-button--xsmall::before, .design-system-icon-button--small::before { width: 40px; height: 40px; }
+.design-system-icon-button--medium::before { width: 48px; height: 48px; }
+.design-system-icon-button--large::before { width: 88px; height: 88px; }
+.design-system-icon-button--xlarge::before { width: 128px; height: 128px; }
+.design-system-icon-button--xsmall img, .design-system-icon-button--xsmall svg { width: 20px; height: 20px; }
+.design-system-icon-button--large img, .design-system-icon-button--large svg { width: 32px; height: 32px; }
+.design-system-icon-button--xlarge img, .design-system-icon-button--xlarge svg { width: 40px; height: 40px; }
 .design-system-icon-button--narrow { width: 48px; }
 .design-system-icon-button--wide { width: 72px; }
-.design-system-icon-button img, .design-system-icon-button svg { width: 24px; height: 24px; }
-.design-system-icon-button:hover { filter: brightness(1.08); }
-.design-system-icon-button--focus:focus-visible { outline: 3px solid var(--md-sys-color-secondary); outline-offset: 2px; }
-.design-system-icon-button:disabled { opacity: var(--md-sys-state-disabled-content-opacity); cursor: not-allowed; }
+.design-system-icon-button--xsmall.design-system-icon-button--wide { width: 48px; }
+.design-system-icon-button--small.design-system-icon-button--wide { width: 52px; }
+.design-system-icon-button--large.design-system-icon-button--narrow { width: 64px; }
+.design-system-icon-button--large.design-system-icon-button--wide { width: 128px; }
+.design-system-icon-button--xlarge.design-system-icon-button--narrow { width: 104px; }
+.design-system-icon-button--xlarge.design-system-icon-button--wide { width: 184px; }
+.design-system-icon-button--medium.design-system-icon-button--wide { width: 72px; }
+.design-system-icon-button--square.design-system-icon-button--medium::before { border-radius: 12px; }
+.design-system-icon-button--square.design-system-icon-button--large::before,
+.design-system-icon-button--square.design-system-icon-button--xlarge::before { border-radius: 16px; }
+.design-system-icon-button--hovered::before,
+.design-system-icon-button:hover::before { background: color-mix(in srgb, var(--md-sys-color-on-primary, #fff) 8%, var(--md-sys-color-primary, #6750a4)); }
+.design-system-icon-button--focused::before,
+.design-system-icon-button:focus-visible::before { background: color-mix(in srgb, var(--md-sys-color-on-primary, #fff) 10%, var(--md-sys-color-primary, #6750a4)); }
+.design-system-icon-button--pressed::before,
+.design-system-icon-button:active::before { background: color-mix(in srgb, var(--md-sys-color-on-primary, #fff) 8%, var(--md-sys-color-primary, #6750a4)); }
+.design-system-icon-button--pressed::after,
+.design-system-icon-button:active::after { opacity: 1; background: radial-gradient(circle at 75% 75%, rgb(255 255 255 / 16%) 0 22%, transparent 23%); }
+.design-system-icon-button--focus:focus-visible::after,
+.design-system-icon-button--focused::after { opacity: 1; }
+.design-system-icon-button--disabled,
+.design-system-icon-button:disabled { cursor: not-allowed; }
+.design-system-icon-button--disabled::before,
+.design-system-icon-button:disabled::before { background: var(--md-sys-color-on-surface, #1d1b20); opacity: var(--md-sys-state-on-surface-disabled-opacity, 0.1); }
+.design-system-icon-button--disabled img,
+.design-system-icon-button:disabled img { opacity: var(--md-sys-state-disabled-content-opacity, 0.38); }
