@@ -1,0 +1,13 @@
+.design-system-icon-button { display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; width: 48px; height: 48px; padding: 0; border: 0; border-radius: 50%; color: var(--md-sys-color-on-primary); background: var(--md-sys-color-primary); cursor: pointer; }
+.design-system-icon-button--square { border-radius: 12px; }
+.design-system-icon-button--xsmall { width: 48px; height: 48px; }
+.design-system-icon-button--small { width: 48px; height: 48px; }
+.design-system-icon-button--medium { width: 56px; height: 56px; }
+.design-system-icon-button--large { width: 96px; height: 96px; }
+.design-system-icon-button--xlarge { width: 136px; height: 136px; }
+.design-system-icon-button--narrow { width: 48px; }
+.design-system-icon-button--wide { width: 72px; }
+.design-system-icon-button img, .design-system-icon-button svg { width: 24px; height: 24px; }
+.design-system-icon-button:hover { filter: brightness(1.08); }
+.design-system-icon-button--focus:focus-visible { outline: 3px solid var(--md-sys-color-secondary); outline-offset: 2px; }
+.design-system-icon-button:disabled { opacity: var(--md-sys-state-disabled-content-opacity); cursor: not-allowed; }

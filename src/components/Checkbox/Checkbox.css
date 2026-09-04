@@ -1,0 +1,6 @@
+.design-system-checkbox { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; color: var(--md-sys-color-on-surface); cursor: pointer; font: 400 16px/24px Roboto, 'Segoe UI', sans-serif; }
+.design-system-checkbox input { position: absolute; opacity: 0; }
+.design-system-checkbox__box { width: 18px; height: 18px; border: 2px solid var(--md-sys-color-on-surface-variant, #49454f); border-radius: 2px; }
+.design-system-checkbox input:checked + .design-system-checkbox__box { border-color: var(--md-sys-color-primary); background: var(--md-sys-color-primary); }
+.design-system-checkbox input:checked + .design-system-checkbox__box::after { display: block; width: 5px; height: 10px; margin: 2px 0 0 5px; border: solid white; border-width: 0 2px 2px 0; content: ''; transform: rotate(45deg); }
+.design-system-checkbox--focus input:focus-visible + .design-system-checkbox__box { outline: 3px solid var(--md-sys-color-secondary); outline-offset: 2px; }

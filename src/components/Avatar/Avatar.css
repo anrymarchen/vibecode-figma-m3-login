@@ -1,0 +1,13 @@
+.design-system-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--md-sys-color-on-primary-container, #4f378a);
+  background: var(--md-sys-color-primary-container, #eaddff);
+  font: 500 16px/24px Roboto, 'Segoe UI', sans-serif;
+  letter-spacing: 0.1px;
+}
+.design-system-avatar--check { color: var(--md-sys-color-primary); }
