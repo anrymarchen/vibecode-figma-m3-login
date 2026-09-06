@@ -1,14 +1,179 @@
-.design-system-text-field { position: relative; display: flex; flex-direction: column; width: 210px; color: var(--md-sys-color-on-surface-variant, #49454f); font: 400 16px/24px Roboto, 'Segoe UI', sans-serif; }
-.design-system-text-field__control { position: relative; display: flex; align-items: stretch; width: 100%; height: 56px; box-sizing: border-box; }
-.design-system-text-field--filled .design-system-text-field__control { border-radius: 4px 4px 0 0; background: var(--md-sys-color-surface-container-highest, #e6e0e9); }
-.design-system-text-field--outlined .design-system-text-field__control { border: 1px solid var(--md-sys-color-outline, #79747e); border-radius: 4px; }
-.design-system-text-field__content { position: relative; display: flex; flex: 1; min-width: 0; flex-direction: column; justify-content: center; padding: 4px 16px; }
-.design-system-text-field__label { position: absolute; top: 4px; left: 12px; padding: 0 4px; color: inherit; font-size: 12px; line-height: 16px; letter-spacing: 0.4px; }
-.design-system-text-field--outlined .design-system-text-field__label { top: -9px; background: var(--md-sys-color-surface, #fef7ff); }
-.design-system-text-field input { width: 100%; min-width: 0; height: 24px; margin-top: 12px; padding: 0; border: 0; outline: 0; color: var(--md-sys-color-on-surface, #1d1b20); background: transparent; font: inherit; letter-spacing: 0.5px; }
-.design-system-text-field input::placeholder { color: inherit; opacity: 1; }
-.design-system-text-field__icon { display: flex; flex: 0 0 48px; align-items: center; justify-content: center; }
-.design-system-text-field__icon img, .design-system-text-field__icon svg { width: 24px; height: 24px; }
+/* ========================================
+   Base
+   ======================================== */
+
+.design-system-text-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 210px;
+  color: var(--md-sys-color-on-surface-variant, #49454f);
+  font: 400 16px/24px Roboto, 'Segoe UI', sans-serif;
+}
+
+
+/* ========================================
+   Control
+   ======================================== */
+
+.design-system-text-field__control {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 56px;
+  box-sizing: border-box;
+}
+
+.design-system-text-field--filled .design-system-text-field__control {
+  border-radius: 4px 4px 0 0;
+  background: var(--md-sys-color-surface-container-highest, #e6e0e9);
+}
+
+.design-system-text-field--outlined .design-system-text-field__control {
+  border: 0;
+  border-radius: 4px;
+}
+
+
+/* ========================================
+   Outlined Notched Outline
+   ======================================== */
+
+.design-system-text-field__outline {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.design-system-text-field__outline-leading {
+  flex: 0 0 12px;
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--md-sys-color-outline, #79747e);
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.design-system-text-field__outline-notch {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--md-sys-color-outline, #79747e);
+  padding: 0 4px;
+}
+
+.design-system-text-field__outline-trailing {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--md-sys-color-outline, #79747e);
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+
+/* ========================================
+   Content
+   ======================================== */
+
+.design-system-text-field__content {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4px 16px;
+}
+
+
+/* ========================================
+   Label
+   ======================================== */
+
+.design-system-text-field__label {
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  padding: 0 4px;
+  color: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+}
+
+.design-system-text-field--outlined .design-system-text-field__label {
+  position: relative;
+  top: -12px;
+  left: auto;
+  padding: 0;
+  white-space: nowrap;
+  background: transparent;
+}
+
+
+/* ========================================
+   Input
+   ======================================== */
+
+.design-system-text-field--filled input {
+  width: 100%;
+  min-width: 0;
+  height: 24px;
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: var(--md-sys-color-on-surface, #1d1b20);
+  background: transparent;
+  font: inherit;
+  letter-spacing: 0.5px;
+}
+
+.design-system-text-field--outlined input {
+  width: 100%;
+  min-width: 0;
+  height: 24px;
+  margin-top: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  color: var(--md-sys-color-on-surface, #1d1b20);
+  background: transparent;
+  font: inherit;
+  letter-spacing: 0.5px;
+}
+
+.design-system-text-field input::placeholder {
+  color: var(--md-sys-color-on-surface, #1d1b20);
+  opacity: 0.38;
+}
+
+
+/* ========================================
+   Icons
+   ======================================== */
+
+.design-system-text-field__icon {
+  display: flex;
+  flex: 0 0 48px;
+  align-items: center;
+  justify-content: center;
+}
+
+.design-system-text-field__icon img,
+.design-system-text-field__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+
+/* ========================================
+   Active Indicator
+   ======================================== */
+
 .design-system-text-field__active-indicator {
   position: absolute;
   left: 0;
@@ -17,46 +182,159 @@
   height: 0;
   border-top: 1px solid transparent;
 }
+
 .design-system-text-field--filled .design-system-text-field__active-indicator {
-  height: 0;
-  border-top: 1px solid var(--md-sys-color-on-surface-variant, #49454f);
+  border-top-color: var(--md-sys-color-on-surface-variant, #49454f);
 }
+
+
+/* ========================================
+   Focused State
+   ======================================== */
+
 .design-system-text-field--outlined.design-system-text-field--focused
-  .design-system-text-field__control {
+  .design-system-text-field__outline-leading,
+.design-system-text-field--outlined.design-system-text-field--focused
+  .design-system-text-field__outline-notch,
+.design-system-text-field--outlined.design-system-text-field--focused
+  .design-system-text-field__outline-trailing {
   border-width: 3px;
+  border-color: var(--md-sys-color-primary, #6750a4);
 }
+
 .design-system-text-field--filled.design-system-text-field--focused
   .design-system-text-field__active-indicator {
   border-top-width: 3px;
+  border-top-color: var(--md-sys-color-primary, #6750a4);
 }
-.design-system-text-field--active .design-system-text-field__active-indicator {
+
+
+/* ========================================
+   Active State
+   ======================================== */
+
+.design-system-text-field--outlined.design-system-text-field--active
+  .design-system-text-field__outline-leading,
+.design-system-text-field--outlined.design-system-text-field--active
+  .design-system-text-field__outline-notch,
+.design-system-text-field--outlined.design-system-text-field--active
+  .design-system-text-field__outline-trailing {
+  border-width: 3px;
   border-color: var(--md-sys-color-primary, #6750a4);
 }
 
-.design-system-text-field--active .design-system-text-field__control {
-  border-color: var(--md-sys-color-primary, #6750a4);
-}
 .design-system-text-field--filled.design-system-text-field--active
   .design-system-text-field__active-indicator {
   border-top-width: 3px;
+  border-top-color: var(--md-sys-color-primary, #6750a4);
 }
 
-.design-system-text-field--outlined.design-system-text-field--active
-  .design-system-text-field__control {
-  border-width: 3px;
+
+/* ========================================
+   Error State
+   ======================================== */
+
+.design-system-text-field--error {
+  color: var(--md-sys-color-error, #b3261e);
 }
+
+.design-system-text-field--outlined.design-system-text-field--error
+  .design-system-text-field__outline-leading,
+.design-system-text-field--outlined.design-system-text-field--error
+  .design-system-text-field__outline-notch,
+.design-system-text-field--outlined.design-system-text-field--error
+  .design-system-text-field__outline-trailing {
+  border-color: var(--md-sys-color-error, #b3261e);
+}
+
 .design-system-text-field--filled.design-system-text-field--error
   .design-system-text-field__active-indicator {
   border-top-width: 3px;
+  border-top-color: var(--md-sys-color-error, #b3261e);
 }
-.design-system-text-field--focused .design-system-text-field__active-indicator { border-color: var(--md-sys-color-primary, #6750a4); }
-.design-system-text-field--focused .design-system-text-field__control { border-color: var(--md-sys-color-primary, #6750a4); }
-.design-system-text-field--error { color: var(--md-sys-color-error, #b3261e); }
-.design-system-text-field--error .design-system-text-field__control { border-color: var(--md-sys-color-error, #b3261e); }
-.design-system-text-field--error .design-system-text-field__active-indicator { border-color: var(--md-sys-color-error, #b3261e); }
-.design-system-text-field--disabled { opacity: var(--md-sys-state-disabled-content-opacity, 0.38); }
-.design-system-text-field--disabled .design-system-text-field__control { background: var(--md-sys-color-on-surface, #1d1b20); }
-.design-system-text-field--outlined.design-system-text-field--disabled .design-system-text-field__control { background: transparent; }
-.design-system-text-field--hovered .design-system-text-field__control,
-.design-system-text-field__control:hover { border-color: var(--md-sys-color-on-surface, #1d1b20); }
-.design-system-text-field small { min-height: 20px; padding: 4px 16px 0; color: inherit; font-size: 12px; line-height: 16px; letter-spacing: 0.4px; }
+
+
+/* ========================================
+   Disabled State
+   ======================================== */
+
+.design-system-text-field--disabled {
+  opacity: var(--md-sys-state-disabled-content-opacity, 0.38);
+}
+
+.design-system-text-field--disabled .design-system-text-field__control {
+  background: var(--md-sys-color-on-surface, #1d1b20);
+}
+
+.design-system-text-field--outlined.design-system-text-field--disabled
+  .design-system-text-field__control {
+  background: transparent;
+}
+
+.design-system-text-field--outlined.design-system-text-field--disabled
+  .design-system-text-field__outline-leading,
+.design-system-text-field--outlined.design-system-text-field--disabled
+  .design-system-text-field__outline-notch,
+.design-system-text-field--outlined.design-system-text-field--disabled
+  .design-system-text-field__outline-trailing {
+  border-color: var(--md-sys-color-on-surface, #1d1b20);
+}
+
+
+/* ========================================
+   Hovered State
+   ======================================== */
+
+.design-system-text-field--outlined.design-system-text-field--hovered
+  .design-system-text-field__outline-leading,
+.design-system-text-field--outlined.design-system-text-field--hovered
+  .design-system-text-field__outline-notch,
+.design-system-text-field--outlined.design-system-text-field--hovered
+  .design-system-text-field__outline-trailing,
+.design-system-text-field--outlined
+  .design-system-text-field__control:hover
+  .design-system-text-field__outline-leading,
+.design-system-text-field--outlined
+  .design-system-text-field__control:hover
+  .design-system-text-field__outline-notch,
+.design-system-text-field--outlined
+  .design-system-text-field__control:hover
+  .design-system-text-field__outline-trailing {
+  border-color: var(--md-sys-color-on-surface, #1d1b20);
+}
+
+
+/* ========================================
+   Supporting Text
+   ======================================== */
+
+.design-system-text-field small {
+  min-height: 20px;
+  padding: 4px 16px 0;
+  color: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+}
+
+
+/* ========================================
+   Trailing Action
+   ======================================== */
+
+.design-system-text-field__trailing-icon button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.design-system-text-field__trailing-icon button img {
+  width: 24px;
+  height: 24px;
+}
