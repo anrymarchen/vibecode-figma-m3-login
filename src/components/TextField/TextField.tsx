@@ -6,7 +6,7 @@ import errorIcon from '../../assets/icons/error.svg';
 import './TextField.css';
 
 export type TextFieldStyle = 'Filled' | 'Outlined';
-export type TextFieldState = 'Enabled' | 'Hovered' | 'Focused' | 'Error' | 'Disabled';
+export type TextFieldState = 'Enabled' | 'Hovered' | 'Active' | 'Focused' | 'Error' | 'Disabled';
 
 export interface TextFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'placeholder' | 'style'> {
   labelText?: string;
@@ -58,8 +58,12 @@ export function TextField({
           <input {...props} id={id} disabled={isDisabled} placeholder={placeholderText} />
         </span>
         {hasTrailingIcon && <span className="design-system-text-field__icon design-system-text-field__trailing-icon">{stateIcon ?? <img src={closeIcon} alt="" />}</span>}
+      <span
+        className="design-system-text-field__active-indicator"
+        aria-hidden="true"
+       />
       </span>
-      <span className="design-system-text-field__active-indicator" aria-hidden="true" />
+      {/*<span className="design-system-text-field__active-indicator" aria-hidden="true" />*/}
       {showSupportingText && <small>{supportingText}</small>}
     </label>
   );

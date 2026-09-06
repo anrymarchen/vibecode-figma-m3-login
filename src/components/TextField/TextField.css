@@ -9,7 +9,46 @@
 .design-system-text-field input::placeholder { color: inherit; opacity: 1; }
 .design-system-text-field__icon { display: flex; flex: 0 0 48px; align-items: center; justify-content: center; }
 .design-system-text-field__icon img, .design-system-text-field__icon svg { width: 24px; height: 24px; }
-.design-system-text-field__active-indicator { height: 0; border-top: 2px solid transparent; }
+.design-system-text-field__active-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  border-top: 1px solid transparent;
+}
+.design-system-text-field--filled .design-system-text-field__active-indicator {
+  height: 0;
+  border-top: 1px solid var(--md-sys-color-on-surface-variant, #49454f);
+}
+.design-system-text-field--outlined.design-system-text-field--focused
+  .design-system-text-field__control {
+  border-width: 3px;
+}
+.design-system-text-field--filled.design-system-text-field--focused
+  .design-system-text-field__active-indicator {
+  border-top-width: 3px;
+}
+.design-system-text-field--active .design-system-text-field__active-indicator {
+  border-color: var(--md-sys-color-primary, #6750a4);
+}
+
+.design-system-text-field--active .design-system-text-field__control {
+  border-color: var(--md-sys-color-primary, #6750a4);
+}
+.design-system-text-field--filled.design-system-text-field--active
+  .design-system-text-field__active-indicator {
+  border-top-width: 3px;
+}
+
+.design-system-text-field--outlined.design-system-text-field--active
+  .design-system-text-field__control {
+  border-width: 3px;
+}
+.design-system-text-field--filled.design-system-text-field--error
+  .design-system-text-field__active-indicator {
+  border-top-width: 3px;
+}
 .design-system-text-field--focused .design-system-text-field__active-indicator { border-color: var(--md-sys-color-primary, #6750a4); }
 .design-system-text-field--focused .design-system-text-field__control { border-color: var(--md-sys-color-primary, #6750a4); }
 .design-system-text-field--error { color: var(--md-sys-color-error, #b3261e); }

@@ -5,7 +5,7 @@ import closeIcon from '../../assets/icons/close.svg';
 
 const meta = { title: 'Components/Text Field', component: TextField, tags: ['autodocs'], argTypes: {
   showSupportingText: { control: 'boolean' }, labelText: { control: 'text' }, placeholderText: { control: 'text' }, supportingText: { control: 'text' },
-  style: { control: 'inline-radio', options: ['Filled', 'Outlined'] }, state: { control: 'select', options: ['Enabled', 'Hovered', 'Focused', 'Error', 'Disabled'] },
+  style: { control: 'inline-radio', options: ['Filled', 'Outlined'] }, state: { control: 'select', options: ['Enabled', 'Hovered', 'Active', 'Focused', 'Error', 'Disabled'] },
   showLeadingIcon: { control: 'boolean' }, showTrailingIcon: { control: 'boolean' },
 }, args: { labelText: 'Label', placeholderText: 'Placeholder', supportingText: 'Supporting text' } } satisfies Meta<typeof TextField>;
 export default meta;
