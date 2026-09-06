@@ -1,46 +1,330 @@
-.design-system-icon-button { position: relative; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; height: 48px; padding: 0; border: 0; color: var(--md-sys-color-on-primary, #fff); background: transparent; cursor: pointer; isolation: isolate; }
-.design-system-icon-button::before { position: absolute; z-index: 0; inset: 50% auto auto 50%; width: 40px; height: 40px; content: ''; transform: translate(-50%, -50%); border-radius: inherit; background: var(--md-sys-color-primary, #6750a4); }
-.design-system-icon-button::after { position: absolute; z-index: 2; inset: 2px; border: 3px solid var(--md-sys-color-secondary, #625b71); border-radius: 50%; content: ''; opacity: 0; pointer-events: none; }
-.design-system-icon-button img, .design-system-icon-button svg { position: relative; z-index: 1; display: block; width: 24px; height: 24px; filter: brightness(0) invert(1); }
-.design-system-icon-button--round::before { border-radius: 100px; }
-.design-system-icon-button--square::before { border-radius: 8px; }
-.design-system-icon-button--xsmall { width: 48px; height: 48px; }
-.design-system-icon-button--small { width: 48px; height: 48px; }
-.design-system-icon-button--medium { width: 56px; height: 56px; }
-.design-system-icon-button--large { width: 96px; height: 96px; }
-.design-system-icon-button--xlarge { width: 136px; height: 136px; }
-.design-system-icon-button--xsmall::before, .design-system-icon-button--small::before { width: 40px; height: 40px; }
-.design-system-icon-button--medium::before { width: 48px; height: 48px; }
-.design-system-icon-button--large::before { width: 88px; height: 88px; }
-.design-system-icon-button--xlarge::before { width: 128px; height: 128px; }
-.design-system-icon-button--xsmall img, .design-system-icon-button--xsmall svg { width: 20px; height: 20px; }
-.design-system-icon-button--large img, .design-system-icon-button--large svg { width: 32px; height: 32px; }
-.design-system-icon-button--xlarge img, .design-system-icon-button--xlarge svg { width: 40px; height: 40px; }
-.design-system-icon-button--narrow { width: 48px; }
-.design-system-icon-button--wide { width: 72px; }
-.design-system-icon-button--xsmall.design-system-icon-button--wide { width: 48px; }
-.design-system-icon-button--small.design-system-icon-button--wide { width: 52px; }
-.design-system-icon-button--large.design-system-icon-button--narrow { width: 64px; }
-.design-system-icon-button--large.design-system-icon-button--wide { width: 128px; }
-.design-system-icon-button--xlarge.design-system-icon-button--narrow { width: 104px; }
-.design-system-icon-button--xlarge.design-system-icon-button--wide { width: 184px; }
-.design-system-icon-button--medium.design-system-icon-button--wide { width: 72px; }
-.design-system-icon-button--square.design-system-icon-button--medium::before { border-radius: 12px; }
-.design-system-icon-button--square.design-system-icon-button--large::before,
-.design-system-icon-button--square.design-system-icon-button--xlarge::before { border-radius: 16px; }
-.design-system-icon-button--hovered::before,
-.design-system-icon-button:hover::before { background: color-mix(in srgb, var(--md-sys-color-on-primary, #fff) 8%, var(--md-sys-color-primary, #6750a4)); }
-.design-system-icon-button--focused::before,
-.design-system-icon-button:focus-visible::before { background: color-mix(in srgb, var(--md-sys-color-on-primary, #fff) 10%, var(--md-sys-color-primary, #6750a4)); }
-.design-system-icon-button--pressed::before,
-.design-system-icon-button:active::before { background: color-mix(in srgb, var(--md-sys-color-on-primary, #fff) 8%, var(--md-sys-color-primary, #6750a4)); }
-.design-system-icon-button--pressed::after,
-.design-system-icon-button:active::after { opacity: 1; background: radial-gradient(circle at 75% 75%, rgb(255 255 255 / 16%) 0 22%, transparent 23%); }
-.design-system-icon-button--focus:focus-visible::after,
-.design-system-icon-button--focused::after { opacity: 1; }
-.design-system-icon-button--disabled,
-.design-system-icon-button:disabled { cursor: not-allowed; }
-.design-system-icon-button--disabled::before,
-.design-system-icon-button:disabled::before { background: var(--md-sys-color-on-surface, #1d1b20); opacity: var(--md-sys-state-on-surface-disabled-opacity, 0.1); }
-.design-system-icon-button--disabled img,
-.design-system-icon-button:disabled img { opacity: var(--md-sys-state-disabled-content-opacity, 0.38); }
+.design-system-icon-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  color: #ffffff;
+  background: transparent;
+  font-family: Roboto, 'Segoe UI', sans-serif;
+  cursor: pointer;
+  isolation: isolate;
+  transition:
+    border-radius 120ms ease,
+    background-color 120ms ease;
+}
+
+/* --------------------------------------------------
+   Visual state layer
+   -------------------------------------------------- */
+
+.design-system-icon-button__state-layer {
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  background: #6750a4;
+  color: #ffffff;
+  transition:
+    width 120ms ease,
+    height 120ms ease,
+    border-radius 120ms ease;
+}
+
+.design-system-icon-button__icon {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.design-system-icon-button__icon > svg,
+.design-system-icon-button__icon > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* --------------------------------------------------
+   State layer overlays
+   Same behavioral model as Button
+   -------------------------------------------------- */
+
+.design-system-icon-button__state-layer::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  content: '';
+  pointer-events: none;
+}
+
+/* Hover */
+
+.design-system-icon-button:hover
+  .design-system-icon-button__state-layer::before,
+.design-system-icon-button--hovered
+  .design-system-icon-button__state-layer::before {
+  background: rgb(255 255 255 / 8%);
+}
+
+/* Focus */
+
+.design-system-icon-button:focus-visible
+  .design-system-icon-button__state-layer::before,
+.design-system-icon-button--focused
+  .design-system-icon-button__state-layer::before {
+  background: rgb(255 255 255 / 10%);
+}
+
+/* Pressed */
+
+.design-system-icon-button:active
+  .design-system-icon-button__state-layer::before,
+.design-system-icon-button--pressed
+  .design-system-icon-button__state-layer::before {
+  background:
+    radial-gradient(
+      ellipse 72% 100% at 100% 100%,
+      rgb(255 255 255 / 16%) 0 42%,
+      transparent 43%
+    ),
+    rgb(255 255 255 / 8%);
+}
+
+/* --------------------------------------------------
+   Shape
+   -------------------------------------------------- */
+
+.design-system-icon-button--round
+  .design-system-icon-button__state-layer {
+  border-radius: 100px;
+}
+
+.design-system-icon-button--square
+  .design-system-icon-button__state-layer {
+  border-radius: 12px;
+}
+
+/*
+ * Pressed shape behavior:
+ *
+ * Round → becomes a rounded square.
+ * Square → becomes more tightly rounded.
+ */
+
+.design-system-icon-button--round:active
+  .design-system-icon-button__state-layer,
+.design-system-icon-button--round.design-system-icon-button--pressed
+  .design-system-icon-button__state-layer {
+  border-radius: 16px;
+}
+
+.design-system-icon-button--square:active
+  .design-system-icon-button__state-layer,
+.design-system-icon-button--square.design-system-icon-button--pressed
+  .design-system-icon-button__state-layer {
+  border-radius: 8px;
+}
+
+/* --------------------------------------------------
+   Focus indicator
+   -------------------------------------------------- */
+
+.design-system-icon-button--focus-indicator:focus-visible {
+  outline: 3px solid #625b71;
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------
+   XSmall
+   Actual touch target: 48 × 48
+   Visual button: 32 × 32
+   -------------------------------------------------- */
+
+.design-system-icon-button--xsmall {
+  width: 48px;
+  height: 48px;
+}
+
+.design-system-icon-button--xsmall
+  .design-system-icon-button__state-layer {
+  width: 32px;
+  height: 32px;
+}
+
+.design-system-icon-button--xsmall
+  .design-system-icon-button__icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* --------------------------------------------------
+   Small
+   Actual touch target: 48 × 48
+   Visual button: 40 × 40
+   -------------------------------------------------- */
+
+.design-system-icon-button--small {
+  width: 48px;
+  height: 48px;
+}
+
+.design-system-icon-button--small
+  .design-system-icon-button__state-layer {
+  width: 40px;
+  height: 40px;
+}
+
+.design-system-icon-button--small
+  .design-system-icon-button__icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* --------------------------------------------------
+   Medium
+   -------------------------------------------------- */
+
+.design-system-icon-button--medium {
+  width: 56px;
+  height: 56px;
+}
+
+.design-system-icon-button--medium
+  .design-system-icon-button__state-layer {
+  width: 56px;
+  height: 56px;
+}
+
+.design-system-icon-button--medium
+  .design-system-icon-button__icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* --------------------------------------------------
+   Large
+   -------------------------------------------------- */
+
+.design-system-icon-button--large {
+  width: 96px;
+  height: 96px;
+}
+
+.design-system-icon-button--large
+  .design-system-icon-button__state-layer {
+  width: 96px;
+  height: 96px;
+}
+
+.design-system-icon-button--large
+  .design-system-icon-button__icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* --------------------------------------------------
+   XLarge
+   -------------------------------------------------- */
+
+.design-system-icon-button--xlarge {
+  width: 136px;
+  height: 136px;
+}
+
+.design-system-icon-button--xlarge
+  .design-system-icon-button__state-layer {
+  width: 136px;
+  height: 136px;
+}
+
+.design-system-icon-button--xlarge
+  .design-system-icon-button__icon {
+  width: 40px;
+  height: 40px;
+}
+
+/* --------------------------------------------------
+   Width variants
+   -------------------------------------------------- */
+
+.design-system-icon-button--narrow {
+  width: 48px;
+}
+
+.design-system-icon-button--wide {
+  width: 72px;
+}
+
+.design-system-icon-button--xsmall.design-system-icon-button--wide {
+  width: 48px;
+}
+
+.design-system-icon-button--small.design-system-icon-button--wide {
+  width: 52px;
+}
+
+.design-system-icon-button--medium.design-system-icon-button--wide {
+  width: 72px;
+}
+
+.design-system-icon-button--large.design-system-icon-button--narrow {
+  width: 64px;
+}
+
+.design-system-icon-button--large.design-system-icon-button--wide {
+  width: 128px;
+}
+
+.design-system-icon-button--xlarge.design-system-icon-button--narrow {
+  width: 104px;
+}
+
+.design-system-icon-button--xlarge.design-system-icon-button--wide {
+  width: 184px;
+}
+
+/* --------------------------------------------------
+   Disabled
+   -------------------------------------------------- */
+
+.design-system-icon-button:disabled {
+  cursor: not-allowed;
+}
+
+.design-system-icon-button:disabled
+  .design-system-icon-button__state-layer {
+  color: #1d1b20;
+  background: rgb(29 27 32 / 10%);
+}
+
+.design-system-icon-button:disabled
+  .design-system-icon-button__icon {
+  opacity: 0.38;
+}
+
+/* Static Storybook disabled state */
+
+.design-system-icon-button--disabled {
+  cursor: not-allowed;
+}
+
+.design-system-icon-button--disabled
+  .design-system-icon-button__state-layer {
+  color: #1d1b20;
+  background: rgb(29 27 32 / 10%);
+}
+
+.design-system-icon-button--disabled
+  .design-system-icon-button__icon {
+  opacity: 0.38;
+}
