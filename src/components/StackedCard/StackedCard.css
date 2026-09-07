@@ -1,14 +1,299 @@
-.design-system-stacked-card { position: relative; display: flex; flex-direction: column; overflow: hidden; width: 360px; min-height: 480px; border: 1px solid var(--md-sys-color-outline-variant, #cac4d0); border-radius: 12px; color: var(--md-sys-color-on-surface); background: var(--md-sys-color-surface, #fef7ff); }
-.design-system-stacked-card--elevated { box-shadow: 0 1px 3px rgb(0 0 0 / 25%); }
-.design-system-stacked-card--filled { background: var(--md-sys-color-surface-container, #f3edf7); }
-.design-system-stacked-card header { display: flex; align-items: center; gap: 16px; min-height: 72px; padding: 12px 16px; }
-.design-system-stacked-card header > :last-child { margin-left: auto; }
-.design-system-stacked-card__avatar { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: #4f378a; background: #eaddff; }
-.design-system-stacked-card header div { display: grid; gap: 4px; }
-.design-system-stacked-card small { color: var(--md-sys-color-on-surface-variant, #49454f); }
-.design-system-stacked-card__media { display: grid; place-items: center; min-height: 188px; color: #c9c2cc; background: #eee8f0; font-size: 72px; }
-.design-system-stacked-card__body { padding: 16px; }
-.design-system-stacked-card h3 { margin: 0 0 4px; font-size: 16px; font-weight: 400; }
-.design-system-stacked-card p { margin: 28px 0 0; color: var(--md-sys-color-on-surface-variant, #49454f); }
-.design-system-stacked-card__action { display: flex; justify-content: flex-end; padding: 0 16px 16px; }
-.design-system-stacked-card__slot { display: grid; place-items: center; flex: 1; margin: 16px; border: 2px dashed var(--md-sys-color-primary); color: var(--md-sys-color-primary); }
+@import '../../tokens/material.css';
+
+.design-system-stacked-card {
+  --card-radius: 12px;
+  --card-content-padding: 16px;
+  --card-action-gap: 8px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  width: 360px;
+  min-height: 480px;
+  height: auto;
+
+  overflow: hidden;
+
+  border-radius: var(--card-radius);
+
+  color: var(--md-sys-color-on-surface, #1d1b20);
+
+  box-sizing: border-box;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Card styles                                                                */
+/* -------------------------------------------------------------------------- */
+
+.design-system-stacked-card--outlined {
+  border: 1px solid
+    var(--md-sys-color-outline-variant, #cac4d0);
+
+  background: var(
+    --md-sys-color-surface,
+    #fef7ff
+  );
+}
+
+.design-system-stacked-card--elevated {
+  background: var(
+    --md-sys-color-surface-container-low,
+    #f7f2fa
+  );
+
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 30%),
+    0 1px 3px 1px rgb(0 0 0 / 15%);
+}
+
+.design-system-stacked-card--filled {
+  background: var(
+    --md-sys-color-surface-container-highest,
+    #e6e0e9
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Header                                                                     */
+/* -------------------------------------------------------------------------- */
+
+.design-system-stacked-card__header {
+  display: flex;
+  align-items: center;
+
+  flex: 0 0 72px;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 12px 4px 12px 16px;
+
+  box-sizing: border-box;
+}
+
+.design-system-stacked-card__avatar {
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 40px;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  color: var(
+    --md-sys-color-on-primary-container,
+    #21005d
+  );
+
+  background: var(
+    --md-sys-color-primary-container,
+    #eaddff
+  );
+}
+
+.design-system-stacked-card__header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 236px;
+  min-width: 0;
+
+  margin-left: 16px;
+
+  gap: 4px;
+}
+
+.design-system-stacked-card__header-title {
+  overflow: hidden;
+
+  color: var(--md-sys-color-on-surface);
+
+  font-family: var(--md-sys-typescale-title-medium-font-family);
+  font-size: var(--md-sys-typescale-title-medium-font-size);
+  font-weight: var(--md-sys-typescale-title-medium-font-weight);
+  line-height: var(--md-sys-typescale-title-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-title-medium-letter-spacing);
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.design-system-stacked-card__subhead {
+  overflow: hidden;
+
+  color: var(--md-sys-color-on-surface-variant);
+
+  font-family: var(--md-sys-typescale-body-medium-font-family);
+  font-size: var(--md-sys-typescale-body-medium-font-size);
+  font-weight: var(--md-sys-typescale-body-medium-font-weight);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-body-medium-letter-spacing);
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.design-system-stacked-card__header-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 48px;
+
+  width: 48px;
+  height: 48px;
+
+  margin-left: 16px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Media                                                                      */
+/* -------------------------------------------------------------------------- */
+
+.design-system-stacked-card__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 188px;
+
+  width: 100%;
+  height: 188px;
+
+  overflow: hidden;
+
+  background: var(
+    --md-sys-color-surface-container,
+    #f3edf7
+  );
+}
+
+.design-system-stacked-card__media > * {
+  width: 100%;
+  height: 100%;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Text content                                                               */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/* Typography                                                                 */
+/* -------------------------------------------------------------------------- */
+
+/* Text content */
+
+.design-system-stacked-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.design-system-stacked-card__headline {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.design-system-stacked-card__title {
+  display: block;
+
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--md-sys-typescale-body-large-font-family);
+  font-size: var(--md-sys-typescale-body-large-font-size);
+  font-weight: var(--md-sys-typescale-body-large-font-weight);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  letter-spacing: var(--md-sys-typescale-body-large-letter-spacing);
+}
+
+.design-system-stacked-card__subtitle {
+  display: block;
+
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--md-sys-typescale-body-medium-font-family);
+  font-size: var(--md-sys-typescale-body-medium-font-size);
+  font-weight: var(--md-sys-typescale-body-medium-font-weight);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-body-medium-letter-spacing);
+}
+
+.design-system-stacked-card__supporting-text {
+  margin: 32px 0 0;
+
+  color: var(--md-sys-color-on-surface-variant);
+
+  font-family: var(--md-sys-typescale-body-medium-font-family);
+  font-size: var(--md-sys-typescale-body-medium-font-size);
+  font-weight: var(--md-sys-typescale-body-medium-font-weight);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-body-medium-letter-spacing);
+}
+
+/* Actions */
+
+.design-system-stacked-card__actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  gap: 8px;
+
+  height: 40px;
+  margin-top: 32px;
+}
+
+.design-system-stacked-card__action {
+  flex: 0 0 auto;
+
+  height: 48px;
+
+  transform: translateY(-4px);
+}
+
+.design-system-stacked-card__action--secondary {
+  width: 100px;
+}
+
+.design-system-stacked-card__action--primary {
+  width: 82px;
+}
+
+.design-system-stacked-card__action > * {
+  width: 100%;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Slot                                                                       */
+/* -------------------------------------------------------------------------- */
+
+.design-system-stacked-card__slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 1;
+
+  min-height: 0;
+
+  margin: 16px;
+
+  border-radius: var(--card-radius);
+
+  background: var(
+    --md-sys-color-surface-container,
+    #f3edf7
+  );
+
+  color: var(
+    --md-sys-color-on-surface-variant,
+    #49454f
+  );
+}

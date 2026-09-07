@@ -328,3 +328,12 @@
   .design-system-icon-button__icon {
   opacity: 0.38;
 }
+
+.design-system-icon-button--plain {
+  background: transparent;
+}
+
+.design-system-icon-button--plain
+  .design-system-icon-button__state-layer {
+  background: transparent;
+}

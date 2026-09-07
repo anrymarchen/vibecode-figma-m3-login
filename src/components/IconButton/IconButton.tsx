@@ -9,6 +9,7 @@ import './IconButton.css';
 export type IconButtonType = 'Round' | 'Square';
 export type IconButtonSize = 'XSmall' | 'Small' | 'Medium' | 'Large' | 'XLarge';
 export type IconButtonWidth = 'Narrow' | 'Default' | 'Wide';
+export type IconButtonVariant = 'standard' | 'plain';
 export type IconButtonState =
   | 'Enabled'
   | 'Hovered'
@@ -24,6 +25,7 @@ export interface IconButtonProps
   size?: IconButtonSize;
   width?: IconButtonWidth;
   state?: IconButtonState;
+  variant?: IconButtonVariant;
 }
 
 const defaultIcon = (
@@ -41,6 +43,7 @@ export function IconButton({
   size = 'Small',
   width = 'Default',
   state = 'Enabled',
+  variant = 'standard',
   disabled,
   className,
   ...buttonProps
@@ -53,6 +56,7 @@ export function IconButton({
     `design-system-icon-button--${size.toLowerCase()}`,
     `design-system-icon-button--${width.toLowerCase()}`,
     `design-system-icon-button--${state.toLowerCase()}`,
+    `design-system-icon-button--${variant}`,
     showFocusIndicator
       ? 'design-system-icon-button--focus-indicator'
       : '',
