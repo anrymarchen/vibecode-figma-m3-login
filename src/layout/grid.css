@@ -1,0 +1,21 @@
+@import '../tokens/layout.css';
+
+.design-system-grid {
+  display: grid;
+
+  grid-template-columns: repeat(
+    var(--md-layout-grid-columns),
+    minmax(0, 1fr)
+  );
+
+  column-gap: var(--md-layout-expanded-gutter);
+
+  margin-inline: var(--md-layout-expanded-margin);
+}
+
+@media (min-width: 1200px) {
+  .design-system-grid {
+    column-gap: var(--md-layout-large-gutter);
+    margin-inline: var(--md-layout-large-margin);
+  }
+}
