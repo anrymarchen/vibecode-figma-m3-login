@@ -46,6 +46,12 @@
   flex: 0 0 auto;
 }
 
+.design-system-icon-button__icon svg,
+.design-system-icon-button__icon svg * {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
 .design-system-icon-button__icon > svg,
 .design-system-icon-button__icon > img {
   display: block;
@@ -335,5 +341,6 @@
 
 .design-system-icon-button--plain
   .design-system-icon-button__state-layer {
+  color: #49454f;
   background: transparent;
 }

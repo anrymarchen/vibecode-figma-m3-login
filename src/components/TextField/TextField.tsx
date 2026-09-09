@@ -1,10 +1,10 @@
 import { useState, type InputHTMLAttributes, type ReactNode } from 'react';
 
-import searchIcon from '../../assets/icons/search.svg';
-import closeIcon from '../../assets/icons/close.svg';
-import errorIcon from '../../assets/icons/error.svg';
-import visibilityIcon from '../../assets/icons/visibility.svg';
-import visibilityOffIcon from '../../assets/icons/visibility_off.svg';
+import SearchIcon from '../../assets/icons/search.svg?react';
+import CloseIcon from '../../assets/icons/close.svg?react';
+import ErrorIcon from '../../assets/icons/error.svg?react';
+import VisibilityIcon from '../../assets/icons/visibility.svg?react';
+import VisibilityOffIcon from '../../assets/icons/visibility_off.svg?react';
 
 import './TextField.css';
 
@@ -77,7 +77,7 @@ export function TextField({
 
   const stateIcon =
     state === 'Error'
-      ? <img src={errorIcon} alt="" />
+      ? <ErrorIcon aria-hidden="true" />
       : trailingIcon;
 
   /* ========================================
@@ -128,7 +128,7 @@ export function TextField({
         {hasLeadingIcon && (
           <span className="design-system-text-field__icon design-system-text-field__leading-icon">
             {leadingIcon ?? (
-              <img src={searchIcon} alt="" />
+              <SearchIcon aria-hidden="true" />
             )}
           </span>
         )}
@@ -174,7 +174,7 @@ export function TextField({
                 onClick={() => setInputValue('')}
                 aria-label="Clear text"
               >
-                <img src={closeIcon} alt="" />
+                <CloseIcon aria-hidden="true" />
               </button>
 
             ) : trailingAction === 'password-toggle' ? (
@@ -189,20 +189,14 @@ export function TextField({
                     : 'Show password'
                 }
               >
-                <img
-                  src={
-                    showPassword
-                      ? visibilityOffIcon
-                      : visibilityIcon
-                  }
-                  alt=""
-                />
+              {showPassword ? (
+                <VisibilityOffIcon aria-hidden="true" />
+                ) : (
+                <VisibilityIcon aria-hidden="true" />
+                )}
               </button>
-
             ) : (
-              stateIcon ?? (
-                <img src={closeIcon} alt="" />
-              )
+              stateIcon ?? <CloseIcon aria-hidden="true" />
             )}
 
           </span>

@@ -157,16 +157,28 @@
    ======================================== */
 
 .design-system-text-field__icon {
-  display: flex;
-  flex: 0 0 48px;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 auto;
+  width: 48px;
+  height: 56px;
+  color: inherit;
 }
 
-.design-system-text-field__icon img,
 .design-system-text-field__icon svg {
+  display: block;
   width: 24px;
   height: 24px;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.design-system-text-field__icon svg * {
+  fill: currentColor;
+  stroke: currentColor;
 }
 
 
@@ -330,11 +342,12 @@
   height: 48px;
   padding: 0;
   border: 0;
+  color: inherit;
   background: transparent;
   cursor: pointer;
 }
 
-.design-system-text-field__trailing-icon button img {
+.design-system-text-field__trailing-icon button svg {
   width: 24px;
   height: 24px;
 }

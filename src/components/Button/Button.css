@@ -1,3 +1,7 @@
+/* =========================================================
+   Base
+   ========================================================= */
+
 .design-system-button {
   position: relative;
   display: inline-flex;
@@ -12,6 +16,11 @@
   isolation: isolate;
   transition: border-radius 120ms ease;
 }
+
+
+/* =========================================================
+   Variants
+   ========================================================= */
 
 .design-system-button--outline,
 .design-system-button--text {
@@ -32,10 +41,10 @@
   border-width: 2px;
 }
 
-.design-system-button--outline:disabled,
-.design-system-button--text:disabled {
-  border-color: transparent;
-}
+
+/* =========================================================
+   State Layer
+   ========================================================= */
 
 .design-system-button::before {
   position: absolute;
@@ -45,15 +54,28 @@
   border-radius: inherit;
 }
 
+
+/* =========================================================
+   Interaction States
+   ========================================================= */
+
+/* Hover */
+
 .design-system-button:hover::before {
   inset: 0;
   background: rgb(255 255 255 / 8%);
 }
 
+
+/* Focus */
+
 .design-system-button:focus-visible::before {
   inset: 0;
   background: rgb(255 255 255 / 10%);
 }
+
+
+/* Active */
 
 .design-system-button:active {
   border-radius: 16px;
@@ -70,6 +92,9 @@
     rgb(255 255 255 / 8%);
 }
 
+
+/* Outline interaction states */
+
 .design-system-button--outline:hover::before,
 .design-system-button--outline:focus-visible::before {
   background: rgb(73 69 79 / 8%);
@@ -84,6 +109,9 @@
     ),
     rgb(73 69 79 / 8%);
 }
+
+
+/* Text interaction states */
 
 .design-system-button--text:hover::before,
 .design-system-button--text:focus-visible::before {
@@ -100,9 +128,24 @@
     rgb(103 80 164 / 8%);
 }
 
+
+/* =========================================================
+   Focus Indicator
+   ========================================================= */
+
 .design-system-button--focus-indicator:focus-visible {
   outline: 3px solid #625b71;
   outline-offset: 2px;
+}
+
+
+/* =========================================================
+   Disabled
+   ========================================================= */
+
+.design-system-button--outline:disabled,
+.design-system-button--text:disabled {
+  border-color: transparent;
 }
 
 .design-system-button:disabled {
@@ -111,6 +154,11 @@
   cursor: not-allowed;
   opacity: 0.38;
 }
+
+
+/* =========================================================
+   Internal Elements
+   ========================================================= */
 
 .design-system-button__state-layer {
   position: relative;
@@ -127,6 +175,12 @@
   flex: 0 0 auto;
 }
 
+.design-system-button__icon svg,
+.design-system-button__icon svg * {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
 .design-system-button__icon > svg,
 .design-system-button__icon > img {
   display: block;
@@ -137,6 +191,13 @@
 .design-system-button__label {
   white-space: nowrap;
 }
+
+
+/* =========================================================
+   Sizes
+   ========================================================= */
+
+/* XSmall */
 
 .design-system-button--xsmall {
   min-height: 48px;
@@ -160,6 +221,9 @@
   letter-spacing: 0.1px;
 }
 
+
+/* Small */
+
 .design-system-button--small {
   min-height: 48px;
   padding: 10px 16px;
@@ -181,6 +245,9 @@
   line-height: 20px;
   letter-spacing: 0.1px;
 }
+
+
+/* Medium */
 
 .design-system-button--medium {
   min-height: 56px;
@@ -204,6 +271,9 @@
   letter-spacing: 0.15px;
 }
 
+
+/* Large */
+
 .design-system-button--large {
   min-height: 96px;
   padding: 32px 48px;
@@ -224,6 +294,9 @@
   font-weight: 400;
   line-height: 32px;
 }
+
+
+/* XLarge */
 
 .design-system-button--xlarge {
   min-height: 136px;
@@ -246,6 +319,11 @@
   line-height: 40px;
 }
 
+
+/* =========================================================
+   Shapes
+   ========================================================= */
+
 .design-system-button--square.design-system-button--xsmall,
 .design-system-button--square.design-system-button--small {
   border-radius: 12px;
@@ -259,6 +337,11 @@
 .design-system-button--square.design-system-button--xlarge {
   border-radius: 28px;
 }
+
+
+/* =========================================================
+   Shape Interaction States
+   ========================================================= */
 
 .design-system-button--square:active {
   border-radius: 8px;

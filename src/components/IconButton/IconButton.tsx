@@ -3,7 +3,7 @@ import type {
   ReactNode,
 } from 'react';
 
-import starsFilledIcon from '../../assets/icons/stars_filled.svg';
+import StarsFilledIcon from '../../assets/icons/stars_filled.svg?react';
 import './IconButton.css';
 
 export type IconButtonType = 'Round' | 'Square';
@@ -28,13 +28,7 @@ export interface IconButtonProps
   variant?: IconButtonVariant;
 }
 
-const defaultIcon = (
-  <img
-    src={starsFilledIcon}
-    alt=""
-    className="design-system-icon-button__default-icon"
-  />
-);
+const defaultIcon = <StarsFilledIcon aria-hidden="true" />;
 
 export function IconButton({
   icon = defaultIcon,

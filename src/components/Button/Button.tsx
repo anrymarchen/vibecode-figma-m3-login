@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 import './Button.css';
-import starsFilledIcon from '../../assets/icons/stars_filled.svg';
+import StarsFilledIcon from '../../assets/icons/stars_filled.svg?react';
 
 export type ButtonSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 export type ButtonShape = 'round' | 'square';
@@ -18,13 +18,7 @@ export interface ButtonProps
   variant?: ButtonVariant;
 }
 
-const defaultIcon = (
-  <img
-    src={starsFilledIcon}
-    alt=""
-    className="design-system-button__default-icon"
-  />
-);
+const defaultIcon = <StarsFilledIcon aria-hidden="true" />;
 
 export function Button({
   label = 'Label',
