@@ -1,4 +1,10 @@
-import { useState, type InputHTMLAttributes, type ReactNode } from 'react';
+import {
+  useState,
+  type ChangeEvent,
+  type FocusEvent,
+  type InputHTMLAttributes,
+  type ReactNode,
+} from 'react';
 
 import SearchIcon from '../../assets/icons/search.svg?react';
 import CloseIcon from '../../assets/icons/close.svg?react';
@@ -34,6 +40,12 @@ export interface TextFieldProps
   trailingAction?: 'clear' | 'password-toggle';
   showLeadingIcon?: boolean;
   showTrailingIcon?: boolean;
+
+  /**
+   * Called whenever the field value changes, including when
+   * the clear action is used.
+   */
+  onValueChange?: (value: string) => void;
 }
 
 export function TextField({
@@ -51,6 +63,12 @@ export function TextField({
   id = 'text-field',
   className,
   disabled,
+  defaultValue,
+  value,
+  onValueChange,
+  onChange,
+  onFocus,
+  onBlur,
   ...props
 }: TextFieldProps) {
   /* ========================================
@@ -58,7 +76,11 @@ export function TextField({
      ======================================== */
 
   const [showPassword, setShowPassword] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+
+  const [inputValue, setInputValue] = useState(() =>
+    typeof defaultValue === 'string' ? defaultValue : '',
+  );
+
   const [isActive, setIsActive] = useState(false);
 
   /* ========================================
@@ -66,6 +88,11 @@ export function TextField({
      ======================================== */
 
   const isDisabled = disabled || state === 'Disabled';
+
+  // If value is provided, the component is controlled.
+  // Otherwise, it manages its own internal value.
+  const currentValue =
+    value !== undefined ? value : inputValue;
 
   const hasLeadingIcon =
     showLeadingIcon || Boolean(leadingIcon);
@@ -75,10 +102,68 @@ export function TextField({
     Boolean(trailingIcon) ||
     Boolean(trailingAction);
 
+  const hasTrailingAction =
+    Boolean(trailingAction) && Boolean(currentValue);
+
   const stateIcon =
-    state === 'Error'
-      ? <ErrorIcon aria-hidden="true" />
-      : trailingIcon;
+    state === 'Error' ? (
+      <ErrorIcon aria-hidden="true" />
+    ) : (
+      trailingIcon
+    );
+
+  /* ========================================
+     Event handlers
+     ======================================== */
+
+  // Handles normal text input changes.
+  // Updates internal state only when the component is uncontrolled.
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    const newValue = event.target.value;
+
+    if (value === undefined) {
+      setInputValue(newValue);
+    }
+
+    onValueChange?.(newValue);
+    onChange?.(event);
+  };
+
+  // Clears the field using the same value-change mechanism
+  // as normal typing.
+  const handleClear = () => {
+    if (value === undefined) {
+      setInputValue('');
+    }
+
+    onValueChange?.('');
+
+  };
+
+  // Keeps the component's active visual state while preserving
+  // any native onFocus callback supplied by the consumer.
+  const handleFocus = (
+    event: FocusEvent<HTMLInputElement>,
+  ) => {
+    setIsActive(true);
+    onFocus?.(event);
+  };
+
+  // Removes the active visual state while preserving
+  // any native onBlur callback supplied by the consumer.
+  const handleBlur = (
+    event: FocusEvent<HTMLInputElement>,
+  ) => {
+    setIsActive(false);
+    onBlur?.(event);
+  };
+
+  // Toggles password visibility without affecting the field value.
+  const handlePasswordToggle = () => {
+    setShowPassword((current) => !current);
+  };
 
   /* ========================================
      Render
@@ -106,7 +191,10 @@ export function TextField({
     >
       <span className="design-system-text-field__control">
 
-        {/* Outlined field */}
+        {/* ========================================
+           Outlined field border + label
+           ======================================== */}
+
         {style === 'Outlined' && (
           <span
             className="design-system-text-field__outline"
@@ -124,7 +212,10 @@ export function TextField({
           </span>
         )}
 
-        {/* Leading icon */}
+        {/* ========================================
+           Leading icon
+           ======================================== */}
+
         {hasLeadingIcon && (
           <span className="design-system-text-field__icon design-system-text-field__leading-icon">
             {leadingIcon ?? (
@@ -133,10 +224,14 @@ export function TextField({
           </span>
         )}
 
-        {/* Input content */}
+        {/* ========================================
+           Input content
+           ======================================== */}
+
         <span className="design-system-text-field__content">
 
           {/* Filled field label */}
+
           {style === 'Filled' && (
             <span className="design-system-text-field__label">
               {labelText}
@@ -148,12 +243,10 @@ export function TextField({
             id={id}
             disabled={isDisabled}
             placeholder={placeholderText}
-            value={inputValue}
-            onChange={(event) =>
-              setInputValue(event.target.value)
-            }
-            onFocus={() => setIsActive(true)}
-            onBlur={() => setIsActive(false)}
+            value={currentValue}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
             type={
               trailingAction === 'password-toggle'
                 ? showPassword
@@ -164,45 +257,60 @@ export function TextField({
           />
         </span>
 
-        {/* Trailing icon / action */}
+        {/* ========================================
+           Trailing icon / action
+           ======================================== */}
+
         {hasTrailingIcon && (
           <span className="design-system-text-field__icon design-system-text-field__trailing-icon">
 
-            {trailingAction === 'clear' ? (
+            {/* Clear action */}
+
+            {trailingAction === 'clear' && hasTrailingAction ? (
               <button
                 type="button"
-                onClick={() => setInputValue('')}
+                onClick={handleClear}
                 aria-label="Clear text"
+                disabled={isDisabled}
               >
                 <CloseIcon aria-hidden="true" />
               </button>
 
-            ) : trailingAction === 'password-toggle' ? (
+            /* Password visibility toggle */
+
+            ) : trailingAction === 'password-toggle' && hasTrailingAction ? (
               <button
                 type="button"
-                onClick={() =>
-                  setShowPassword(!showPassword)
-                }
+                onClick={handlePasswordToggle}
                 aria-label={
                   showPassword
                     ? 'Hide password'
                     : 'Show password'
                 }
+                disabled={isDisabled}
               >
-              {showPassword ? (
-                <VisibilityOffIcon aria-hidden="true" />
+                {showPassword ? (
+                  <VisibilityOffIcon aria-hidden="true" />
                 ) : (
-                <VisibilityIcon aria-hidden="true" />
+                  <VisibilityIcon aria-hidden="true" />
                 )}
               </button>
-            ) : (
-              stateIcon ?? <CloseIcon aria-hidden="true" />
-            )}
+
+            /* Static trailing icon */
+
+            ) : !trailingAction ? (
+              stateIcon ?? (
+                <CloseIcon aria-hidden="true" />
+              )
+            ) : null}
 
           </span>
         )}
 
-        {/* Filled active indicator */}
+        {/* ========================================
+           Filled active indicator
+           ======================================== */}
+
         <span
           className="design-system-text-field__active-indicator"
           aria-hidden="true"
@@ -210,10 +318,19 @@ export function TextField({
 
       </span>
 
-      {/* Supporting text */}
-      {showSupportingText && (
-        <small>{supportingText}</small>
-      )}
+      {/* ========================================
+         Supporting text
+         ======================================== */}
+
+      <small
+        className={
+          showSupportingText
+            ? ''
+            : 'design-system-text-field__supporting-text--hidden'
+        }
+      >
+        {supportingText}
+      </small>
     </label>
   );
 }

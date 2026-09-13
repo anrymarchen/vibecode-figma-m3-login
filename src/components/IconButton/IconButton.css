@@ -49,7 +49,6 @@
 .design-system-icon-button__icon svg,
 .design-system-icon-button__icon svg * {
   fill: currentColor;
-  stroke: currentColor;
 }
 
 .design-system-icon-button__icon > svg,

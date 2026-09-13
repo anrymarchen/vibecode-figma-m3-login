@@ -13,9 +13,24 @@
   margin-inline: var(--md-layout-expanded-margin);
 }
 
+/* ========================================
+   Inlay grid
+   ======================================== */
+
+.design-system-grid--inlay {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--md-layout-expanded-gutter);
+  margin-inline: 0;
+}
+
 @media (min-width: 1200px) {
   .design-system-grid {
     column-gap: var(--md-layout-large-gutter);
     margin-inline: var(--md-layout-large-margin);
+  }
+
+  .design-system-grid--inlay {
+    column-gap: var(--md-layout-large-gutter);
+    margin-inline: 0;
   }
 }

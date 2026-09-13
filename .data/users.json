@@ -1,0 +1,12 @@
+[
+  {
+    "id": "admin",
+    "login": "admin",
+    "password": "admin",
+    "codename1": "",
+    "codename2": "",
+    "deletable": false,
+    "createdAt": "2026-09-13T13:51:06.769Z",
+    "updatedAt": "2026-09-13T13:51:23.018Z"
+  }
+]

@@ -173,7 +173,6 @@
   width: 24px;
   height: 24px;
   fill: currentColor;
-  stroke: currentColor;
 }
 
 .design-system-text-field__icon svg * {
@@ -321,12 +320,13 @@
    ======================================== */
 
 .design-system-text-field small {
-  min-height: 20px;
-  padding: 4px 16px 0;
-  color: inherit;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.4px;
+  display: block;
+  height: 16px;
+  box-sizing: border-box;
+}
+
+.design-system-text-field__supporting-text--hidden {
+  visibility: hidden;
 }
 
 

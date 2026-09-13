@@ -8,20 +8,27 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
+import { authMiddleware } from './server/auth.js';
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [
-  react(),
-  svgr({
-    svgrOptions: {
-      replaceAttrValues: {
-        black: 'currentColor',
+    react(),
+    svgr({
+      svgrOptions: {
+        replaceAttrValues: {
+          black: 'currentColor',
+        },
+      },
+    }),
+    {
+      name: 'local-auth-api',
+      configureServer(server) {
+        server.middlewares.use(authMiddleware());
       },
     },
-  }),
-],
+  ],
   test: {
     projects: [{
       extends: true,
