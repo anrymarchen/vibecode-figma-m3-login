@@ -5,15 +5,7 @@ import { Grid } from '../layout/grid';
 import { StackedCard } from '../components/StackedCard/StackedCard';
 import { TextField } from '../components/TextField/TextField';
 
-type User = {
-  id: string;
-  login: string;
-  codename1: string;
-  codename2: string;
-  deletable: boolean;
-  createdAt: string;
-  updatedAt: string;
-};
+import type { User } from '../types/User';
 
 type AccountScreenProps = {
   user: User;
@@ -47,6 +39,8 @@ export function AccountScreen({
   const hasChanges =
     codename1 !== savedCodename1 ||
     codename2 !== savedCodename2;
+
+  const isGoogleAccount = user.id.startsWith('google:');
 
   const handleSubmit = (event: FormEvent) => {
     saveAccount(event, codename1, codename2);
@@ -135,29 +129,30 @@ export function AccountScreen({
                         />
                       </div>
 
-                      <div className="account-info__credential">
-                        <TextField
-                          id="account-password"
-                          labelText="Password"
-                          placeholderText="Password"
-                          style="Outlined"
-                          state="Enabled"
-                          type="password"
-                          value="••••••••"
-                          showSupportingText={false}
-                          trailingAction="clear"
-                          showTrailingIcon
-                          onChange={() => undefined}
-                          onValueChange={() => undefined}
-                        />
-                      </div>
+                      {!isGoogleAccount && (
+                        <div className="account-info__credential">
+                          <TextField
+                            id="account-password"
+                            labelText="Password"
+                            placeholderText="Password"
+                            style="Outlined"
+                            state="Enabled"
+                            value={user.password}
+                            showSupportingText={false}
+                            trailingAction="password-toggle"
+                            showTrailingIcon
+                            onChange={() => undefined}
+                            onValueChange={() => undefined}
+                          />
+                        </div>
+                      )}
                     </div>
 
                     <div className="account-info__field">
                       <TextField
                         id="codename-1"
-                        labelText="Codename 1"
-                        placeholderText="Codename 1"
+                        labelText="Code Name"
+                        placeholderText="Code Name"
                         style="Filled"
                         state="Enabled"
                         value={codename1}
@@ -174,10 +169,11 @@ export function AccountScreen({
                     <div className="account-info__field">
                       <TextField
                         id="codename-2"
-                        labelText="Codename 2"
-                        placeholderText="Codename 2"
+                        labelText="Recovery email"
+                        placeholderText="Recovery email"
                         style="Filled"
                         state="Enabled"
+                        type="email"
                         value={codename2}
                         showSupportingText={false}
                         trailingAction="clear"

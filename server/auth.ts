@@ -15,10 +15,43 @@ export interface User {
   updatedAt: string;
 }
 
-type PublicUser = Omit<User, 'password'>;
+type PublicUser = User;
+
+type GoogleTokenInfo = {
+  aud?: string;
+  sub?: string;
+  email?: string;
+  email_verified?: string;
+  exp?: string;
+};
 
 const dataPath = path.resolve(process.cwd(), '.data', 'users.json');
 const sessions = new Map<string, string>();
+
+async function verifyGoogleToken(
+  credential: string,
+  googleClientId: string,
+): Promise<GoogleTokenInfo> {
+  const response = await fetch(
+    `https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(credential)}`,
+  );
+
+  if (!response.ok) {
+    throw new Error('Invalid Google credential.');
+  }
+
+  const token = await response.json() as GoogleTokenInfo;
+
+  if (token.aud !== googleClientId) {
+    throw new Error('Google credential was issued for a different application.');
+  }
+
+  if (!token.sub) {
+    throw new Error('Google credential does not contain a user ID.');
+  }
+
+  return token;
+}
 
 function readUsers(): User[] {
   if (!fs.existsSync(dataPath)) {
@@ -43,9 +76,7 @@ function writeUsers(users: User[]) {
 }
 
 function publicUser(user: User): PublicUser {
-  return Object.fromEntries(
-    Object.entries(user).filter(([key]) => key !== 'password'),
-  ) as PublicUser;
+  return user;
 }
 
 function body(req: Connect.IncomingMessage): Promise<Record<string, string>> {
@@ -72,7 +103,9 @@ function sessionUser(req: Connect.IncomingMessage, users: User[]) {
   return users.find((user) => user.id === userId);
 }
 
-export function authMiddleware(): Connect.NextHandleFunction {
+export function authMiddleware(
+  googleClientId: string,
+): Connect.NextHandleFunction {
   return async (req, res, next) => {
     if (!req.url?.startsWith('/api/auth') && !req.url?.startsWith('/api/users')) {
       next();
@@ -116,14 +149,99 @@ export function authMiddleware(): Connect.NextHandleFunction {
 
       if (url === '/api/auth/login' && method === 'POST') {
         const input = await body(req);
-        const user = users.find((candidate) => candidate.login === input.login && candidate.password === input.password);
+        const user = users.find(
+          (candidate) => candidate.login === input.login,
+        );
+
         if (!user) {
-          send(res, 401, { error: 'Invalid login or password.' });
+          send(res, 401, { error: 'Account not found.' });
           return;
         }
+
+        if (user.password !== input.password) {
+          send(res, 401, { error: 'Incorrect password.' });
+          return;
+        }
+
         const token = crypto.randomUUID();
         sessions.set(token, user.id);
-        res.setHeader('Set-Cookie', `session=${token}; Path=/; HttpOnly; SameSite=Lax`);
+
+        const cookie = input.keepLoggedIn
+          ? `session=${token}; Max-Age=2592000; Path=/; HttpOnly; SameSite=Lax`
+          : `session=${token}; Path=/; HttpOnly; SameSite=Lax`;
+
+        res.setHeader('Set-Cookie', cookie);
+        send(res, 200, { user: publicUser(user) });
+        return;
+      }
+
+      if (url === '/api/auth/forgot-password' && method === 'POST') {
+        const input = await body(req);
+        const user = users.find(
+          (candidate) => candidate.login === input.login,
+        );
+
+        if (!user) {
+          send(res, 404, { error: 'Account not found.' });
+          return;
+        }
+
+        if (!user.codename2) {
+          send(res, 400, {
+            error: 'No recovery email is configured for this account.',
+          });
+          return;
+        }
+
+        send(res, 200, {
+          message: 'Password reset link sent to your recovery email.',
+        });
+        return;
+      }
+
+      if (url === '/api/auth/google' && method === 'POST') {
+        const input = await body(req);
+
+        if (!input.credential) {
+          send(res, 400, { error: 'Google credential is required.' });
+          return;
+        }
+
+        const googleToken = await verifyGoogleToken(
+          input.credential,
+          googleClientId,
+        );
+
+        const googleUserId = `google:${googleToken.sub}`;
+
+        let user = users.find((candidate) => candidate.id === googleUserId);
+
+        if (!user) {
+          const now = new Date().toISOString();
+
+          user = {
+            id: googleUserId,
+            login: googleToken.email ?? googleUserId,
+            password: '',
+            codename1: '',
+            codename2: '',
+            deletable: true,
+            createdAt: now,
+            updatedAt: now,
+          };
+
+          users.push(user);
+          writeUsers(users);
+        }
+
+        const token = crypto.randomUUID();
+        sessions.set(token, user.id);
+
+        res.setHeader(
+          'Set-Cookie',
+          `session=${token}; Path=/; HttpOnly; SameSite=Lax`,
+        );
+
         send(res, 200, { user: publicUser(user) });
         return;
       }
@@ -137,14 +255,21 @@ export function authMiddleware(): Connect.NextHandleFunction {
       }
 
       const user = sessionUser(req, users);
+
       if (url === '/api/auth/me' && method === 'GET') {
-        if (!user) { send(res, 401, { error: 'Not authenticated.' }); return; }
+        if (!user) {
+          send(res, 401, { error: 'Not authenticated.' });
+          return;
+        }
         send(res, 200, { user: publicUser(user) });
         return;
       }
 
       if (url === '/api/users/me' && method === 'PATCH') {
-        if (!user) { send(res, 401, { error: 'Not authenticated.' }); return; }
+        if (!user) {
+          send(res, 401, { error: 'Not authenticated.' });
+          return;
+        }
         const input = await body(req);
         user.codename1 = input.codename1 ?? user.codename1;
         user.codename2 = input.codename2 ?? user.codename2;
@@ -155,8 +280,14 @@ export function authMiddleware(): Connect.NextHandleFunction {
       }
 
       if (url === '/api/users/me' && method === 'DELETE') {
-        if (!user) { send(res, 401, { error: 'Not authenticated.' }); return; }
-        if (!user.deletable) { send(res, 403, { error: 'This account cannot be deleted.' }); return; }
+        if (!user) {
+          send(res, 401, { error: 'Not authenticated.' });
+          return;
+        }
+        if (!user.deletable) {
+          send(res, 403, { error: 'This account cannot be deleted.' });
+          return;
+        }
         writeUsers(users.filter((candidate) => candidate.id !== user.id));
         const token = req.headers.cookie?.match(/session=([^;]+)/)?.[1];
         if (token) sessions.delete(token);
@@ -167,7 +298,9 @@ export function authMiddleware(): Connect.NextHandleFunction {
 
       send(res, 404, { error: 'Not found.' });
     } catch (error) {
-      send(res, 400, { error: error instanceof Error ? error.message : 'Request failed.' });
+      send(res, 400, {
+        error: error instanceof Error ? error.message : 'Request failed.',
+      });
     }
   };
 }

@@ -15,7 +15,10 @@ type LoginScreenProps = {
     event: FormEvent,
     login: string,
     password: string,
+    keepLoggedIn: boolean,
   ) => void;
+  submitGoogleLogin: () => Promise<void>;
+  goToForgotPassword: () => void;
   goToRegister: () => void;
 };
 
@@ -23,13 +26,16 @@ export function LoginScreen({
   error,
   setError,
   submitLogin,
+  submitGoogleLogin,
+  goToForgotPassword,
   goToRegister,
 }: LoginScreenProps) {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [keepLoggedIn, setKeepLoggedIn] = useState(true);
 
   const handleSubmit = (event: FormEvent) => {
-    submitLogin(event, login, password);
+    submitLogin(event, login, password, keepLoggedIn);
   };
 
   return (
@@ -56,10 +62,12 @@ export function LoginScreen({
                       labelText="Login"
                       placeholderText="Login"
                       supportingText="Wrong login"
-                      showSupportingText={Boolean(error)}
+                      showSupportingText={error === 'Account not found.'}
                       style="Filled"
                       state={
-                        error ? 'Error' : 'Enabled'
+                        error === 'Account not found.'
+                          ? 'Error'
+                          : 'Enabled'
                       }
                       trailingAction="clear"
                       showTrailingIcon
@@ -79,10 +87,12 @@ export function LoginScreen({
                       labelText="Password"
                       placeholderText="Password"
                       supportingText="Wrong password"
-                      showSupportingText={Boolean(error)}
+                      showSupportingText={error === 'Incorrect password.'}
                       style="Filled"
                       state={
-                        error ? 'Error' : 'Enabled'
+                        error === 'Incorrect password.'
+                          ? 'Error'
+                          : 'Enabled'
                       }
                       type="password"
                       trailingAction="password-toggle"
@@ -90,9 +100,7 @@ export function LoginScreen({
                       value={password}
                       onChange={(event) => {
                         setError('');
-                        setPassword(
-                          event.target.value,
-                        );
+                        setPassword(event.target.value);
                       }}
                       onValueChange={(value) => {
                         setError('');
@@ -108,11 +116,15 @@ export function LoginScreen({
                       size="xsmall"
                       variant="text"
                       type="button"
+                      onClick={goToForgotPassword}
                     />
 
                     <Checkbox
-                      label="Remember me"
-                      defaultChecked
+                      label="Keep me logged in"
+                      checked={keepLoggedIn}
+                      onChange={(event) =>
+                        setKeepLoggedIn(event.target.checked)
+                      }
                     />
                   </div>
 
@@ -144,6 +156,7 @@ export function LoginScreen({
                         }
                         variant="outline"
                         className="login-content__full-button login-content__google-button"
+                        onClick={submitGoogleLogin}
                       />
 
                       <div className="login-content__separator">

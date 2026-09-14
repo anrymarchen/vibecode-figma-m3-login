@@ -21,7 +21,9 @@ export default defineConfig({
     {
       name: 'local-auth-api',
       configureServer(server) {
-        server.middlewares.use(authMiddleware());
+        server.middlewares.use(
+          authMiddleware(server.config.env.VITE_GOOGLE_CLIENT_ID),
+          );
       },
     },
   ],

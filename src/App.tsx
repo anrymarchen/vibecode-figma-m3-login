@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import {
   deleteCurrentUser,
+  forgotPassword,
   getCurrentUser,
   login as loginUser,
   logout as logoutUser,
@@ -9,16 +10,18 @@ import {
   updateCurrentUser,
 } from './api/api';
 
+import { signInWithGoogle } from './api/google';
 import type { User } from './types/User';
 
 import { AccountScreen } from './screens/AccountScreen';
 import { DeleteAccountScreen } from './screens/DeleteAccountScreen';
 import { LoginScreen } from './screens/LoginScreen';
 import { RegisterScreen } from './screens/RegisterScreen';
+import { ForgotPasswordScreen } from './screens/ForgotPasswordScreen';
 
 import './App.css';
 
-type Screen = 'login' | 'register' | 'account' | 'delete';
+type Screen = 'login' | 'register' | 'account' | 'delete' | 'forgot-password';
 
 function getErrorMessage(
   reason: unknown,
@@ -33,6 +36,7 @@ function App() {
   const [screen, setScreen] = useState<Screen>('login');
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     getCurrentUser()
@@ -54,12 +58,17 @@ function App() {
     event: React.FormEvent,
     login: string,
     password: string,
+    keepLoggedIn: boolean,
   ) => {
     event.preventDefault();
     setError('');
 
     try {
-      const current = await loginUser(login, password);
+      const current = await loginUser(
+        login,
+        password,
+        keepLoggedIn,
+      );
 
       setUser(current);
       setScreen('account');
@@ -69,6 +78,37 @@ function App() {
       );
     }
   };
+
+  const submitGoogleLogin = async () => {
+  setError('');
+
+  try {
+    const current = await signInWithGoogle();
+
+    setUser(current);
+    setScreen('account');
+  } catch (reason) {
+    setError(
+      getErrorMessage(reason, 'Unable to sign in with Google.'),
+    );
+  }
+};
+
+const submitForgotPassword = async (
+  event: React.FormEvent,
+  login: string,
+) => {
+  event.preventDefault();
+  setError('');
+  setMessage('');
+
+  try {
+    const result = await forgotPassword(login);
+    setMessage(result);
+  } catch (reason) {
+    setError(getErrorMessage(reason, 'Unable to reset password.'));
+  }
+};
 
   const submitRegistration = async (
     event: React.FormEvent,
@@ -144,7 +184,14 @@ function App() {
 
   const goToLogin = () => {
     setError('');
+    setMessage('');
     setScreen('login');
+  };
+
+  const goToForgotPassword = () => {
+    setError('');
+    setMessage('');
+    setScreen('forgot-password');
   };
 
   const goToRegister = () => {
@@ -184,6 +231,17 @@ function App() {
     );
   }
 
+  if (screen === 'forgot-password') {
+    return (
+      <ForgotPasswordScreen
+        message={message}
+        error={error}
+        submitForgotPassword={submitForgotPassword}
+        goToLogin={goToLogin}
+      />
+    );
+  }
+
   if (screen === 'register') {
     return (
       <RegisterScreen
@@ -200,8 +258,10 @@ function App() {
       error={error}
       setError={setError}
       submitLogin={submitLogin}
+      submitGoogleLogin={submitGoogleLogin}
+      goToForgotPassword={goToForgotPassword}
       goToRegister={goToRegister}
-    />
+  />
   );
 }
 

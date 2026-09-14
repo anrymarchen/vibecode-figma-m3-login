@@ -8,5 +8,15 @@
     "deletable": false,
     "createdAt": "2026-09-13T13:51:06.769Z",
     "updatedAt": "2026-09-13T21:12:28.567Z"
+  },
+  {
+    "id": "google:117162950960009249530",
+    "login": "anrymarchen@gmail.com",
+    "password": "",
+    "codename1": "",
+    "codename2": "",
+    "deletable": true,
+    "createdAt": "2026-09-14T11:06:38.504Z",
+    "updatedAt": "2026-09-14T11:06:38.504Z"
   }
 ]

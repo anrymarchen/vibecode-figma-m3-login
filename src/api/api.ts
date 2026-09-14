@@ -36,19 +36,33 @@ export async function getCurrentUser(): Promise<User> {
 export async function login(
   loginValue: string,
   password: string,
+  keepLoggedIn: boolean,
 ): Promise<User> {
-  const { user } = await request<{ user: User }>(
+  const result = await request<{ user: User }>(
     '/api/auth/login',
     {
       method: 'POST',
       body: JSON.stringify({
         login: loginValue,
         password,
+        keepLoggedIn,
       }),
     },
   );
 
-  return user;
+  return result.user;
+}
+
+export async function forgotPassword(loginValue: string): Promise<string> {
+  const result = await request<{ message: string }>(
+    '/api/auth/forgot-password',
+    {
+      method: 'POST',
+      body: JSON.stringify({ login: loginValue }),
+    },
+  );
+
+  return result.message;
 }
 
 export async function register(
